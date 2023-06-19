@@ -1,12 +1,12 @@
 import { Global } from "@emotion/react";
-import { layout } from "@styles/layout";
 import React from "react";
 import LayoutView from "./layouts/layout.view";
+import {global} from "@styles/global";
 
 function App() {
   return (
     <>
-      <Global styles={layout} />
+      <Global styles={global} />
       <LayoutView>
         <div>하이</div>
       </LayoutView>
