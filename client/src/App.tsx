@@ -1,8 +1,16 @@
-import React from 'react';
+import { Global } from "@emotion/react";
+import { layout } from "@styles/layout";
+import React from "react";
+import LayoutView from "./layouts/layout.view";
 
 function App() {
   return (
-    <div>하이</div>
+    <>
+      <Global styles={layout} />
+      <LayoutView>
+        <div>하이</div>
+      </LayoutView>
+    </>
   );
 }
 
