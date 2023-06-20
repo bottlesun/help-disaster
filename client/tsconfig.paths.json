@@ -5,6 +5,7 @@
       "@common/*": ["components/common/*"],
       "@atoms/*": ["components/atoms/*"],
       "@pages/*": ["pages/*"],
+      "@type/*": ["types/*"],
       "@hooks/*": ["hooks/*"],
       "@styles/*": ["styles/*"],
       "@utils/*": ["utils/*"],

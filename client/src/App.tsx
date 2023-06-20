@@ -1,15 +1,18 @@
 import { Global } from "@emotion/react";
+import Home from "@pages/home";
+import Login from "@pages/user/login";
+import { globalStyle } from "@styles/global.style";
 import React from "react";
-import LayoutView from "./layouts/layout.view";
-import {global} from "@styles/global";
+import { Route, Routes } from "react-router";
 
 function App() {
   return (
     <>
-      <Global styles={global} />
-      <LayoutView>
-        <div>하이</div>
-      </LayoutView>
+      <Global styles={globalStyle} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
     </>
   );
 }
