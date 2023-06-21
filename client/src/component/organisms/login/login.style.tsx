@@ -56,7 +56,7 @@ export const SignUpIdPwSearchStyle = styled.div`
   a {
     font-size: 12px;
     color: var(--color-text-blue);
-    text-decoration: underline;
+    text-decoration: underline !important;
     margin-bottom: 22px;
   }
 `;
