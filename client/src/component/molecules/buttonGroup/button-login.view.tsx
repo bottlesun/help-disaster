@@ -1,7 +1,7 @@
 import gravatar from "gravatar";
 import React from "react";
-import ButtonLinkView from "./button-link.view";
-import { LoginButtonStyle } from "./button.style";
+import ButtonLinkView from "../../atoms/button/button-link.view";
+import { LoginButtonStyle } from "../../atoms/button/button.style";
 
 type ButtonLoginProps = {
   login?: boolean;

@@ -1,5 +1,5 @@
 import "@styles/font.css";
-import "normalize.css";
+import "@styles/reset.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";

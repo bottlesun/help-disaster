@@ -9,6 +9,7 @@ export const globalStyle = (theme: any) => {
       --color-main-dark: #142f69;
       --color-text-blue: #334469;
       --color-text: #333;
+      --color-error: #b3261e;
 
       --font-size-lg: max(2.5rem, min(2vw, 4rem));
       --font-size-md: max(2rem, min(1.5vw, 2rem));
@@ -31,9 +32,7 @@ export const globalStyle = (theme: any) => {
       font-weight: 500;
       font-size: 14px;
     }
-    a {
-      text-decoration: none;
-    }
+
     body {
       background: #f9fbff;
     }

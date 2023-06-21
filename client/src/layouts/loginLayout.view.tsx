@@ -6,7 +6,7 @@ import FooterView from "../component/common/footer/footer.view";
 const LoginLayoutView = ({ children }: LayoutProps) => {
   return (
     <LayoutStyle>
-      <div className={"inner"}>{children}</div>
+      <div className={"login-inner"}>{children}</div>
       <FooterView brand={"HelpDisaster"} name={"BOTTLESUN"} />
     </LayoutStyle>
   );
