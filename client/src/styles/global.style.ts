@@ -10,6 +10,7 @@ export const globalStyle = (theme: any) => {
       --color-text-blue: #334469;
       --color-text: #333;
       --color-error: #b3261e;
+      --color-gray: #b2b2b2;
 
       --font-size-lg: max(2.5rem, min(2vw, 4rem));
       --font-size-md: max(2rem, min(1.5vw, 2rem));

@@ -1,7 +1,7 @@
 import { LayoutStyle } from "@styles/layout.style";
 import { LayoutProps } from "@type/layout.type";
 import React from "react";
-import FooterView from "../component/common/footer/footer.view";
+import FooterView from "../component/molecules/@common/footer.view";
 
 const LoginLayoutView = ({ children }: LayoutProps) => {
   return (

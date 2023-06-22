@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { InputGroupStyle } from "../../atoms/input/input.style";
 import InputInTextLabelView from "./input-in-text-label.view";
 
-const InputInTextLabel = () => {
-  const [value, setValue] = useState({ id: "", password: "" });
+const InputSigninInTextLabel = () => {
+  const [value, setValue] = useState({ id: "", password: "", name: "", repassword: "" });
 
   const handleLoginChange = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
     setValue({ ...value, [event.target.name]: event.target.value });
@@ -22,7 +22,20 @@ const InputInTextLabel = () => {
         onChange: handleLoginChange
       },
       label: {
-        title: "ID"
+        title: "아이디"
+      }
+    },
+    nameProps: {
+      id: "login-name",
+      input: {
+        type: "text",
+        error: false,
+        value: value.name,
+        name: "name",
+        onChange: handleLoginChange
+      },
+      label: {
+        title: "닉네임"
       }
     },
     passwordProps: {
@@ -34,16 +47,30 @@ const InputInTextLabel = () => {
         onChange: handleLoginChange
       },
       label: {
-        title: "PASSWORD"
+        title: "비밀번호"
+      }
+    },
+    rePasswordProps: {
+      id: "login-rePasswordProps",
+      input: {
+        type: "password",
+        name: "rePasswordProps",
+        value: value.password,
+        onChange: handleLoginChange
+      },
+      label: {
+        title: "비밀번호를 다시 입력해주세요."
       }
     }
   };
   return (
-    <InputGroupStyle>
+    <InputGroupStyle className={"input-group"}>
       <InputInTextLabelView {...inputProps.idProps} />
+      <InputInTextLabelView {...inputProps.nameProps} />
       <InputInTextLabelView {...inputProps.passwordProps} />
+      <InputInTextLabelView {...inputProps.rePasswordProps} />
     </InputGroupStyle>
   );
 };
 
-export default InputInTextLabel;
+export default InputSigninInTextLabel;

@@ -14,7 +14,7 @@ export const LoginContainerStyle = styled.section`
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
 
-  > div:nth-of-type(2) {
+  > .input-group {
     // input 창
     width: 400px;
     display: flex;

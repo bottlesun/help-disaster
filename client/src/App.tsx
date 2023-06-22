@@ -1,6 +1,8 @@
 import { Global } from "@emotion/react";
-import Home from "@pages/home";
+import Error404 from "@pages/error404";
+import HomePage from "@pages/home";
 import LoginPage from "@pages/user/login";
+import SignupPage from "@pages/user/signup";
 import { globalStyle } from "@styles/global.style";
 import React from "react";
 import { Route, Routes } from "react-router";
@@ -10,8 +12,10 @@ function App() {
     <>
       <Global styles={globalStyle} />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/*" element={<Error404 />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
       </Routes>
     </>
   );

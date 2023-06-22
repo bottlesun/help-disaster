@@ -16,7 +16,7 @@ export const InputGroupStyle = styled.div`
 
     & input:focus + label,
     & input.input-focus + label {
-      top: 10px;
+      top: 12px;
       font-size: 10px;
       color: var(--color-text-blue);
     }

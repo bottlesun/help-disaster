@@ -1,7 +1,7 @@
 import React from "react";
 import InputInCheckboxLabelView from "./input-in-checkbox-label.view";
 
-const InputInCheckboxLabel = () => {
+const InputLoginInCheckboxLabel = () => {
   const inputProps = {
     checkboxProps: {
       id: "login-checkbox",
@@ -17,4 +17,4 @@ const InputInCheckboxLabel = () => {
   return <InputInCheckboxLabelView {...inputProps.checkboxProps} />;
 };
 
-export default InputInCheckboxLabel;
+export default InputLoginInCheckboxLabel;
