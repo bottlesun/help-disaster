@@ -1,27 +1,31 @@
-import { RowData } from "@type/api.type";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useMsgDataStore } from "@stores/useMsgData.store";
+import { fetcher } from "@utils/fetcher";
+import React, { useEffect } from "react";
+import useSWR from "swr";
+import PaginationView from "../../atoms/pagination/pagination.view";
 import BoxContentTitleTextView from "../../molecules/boxGroup/box-content-title-text.view";
 
+export const msgUrl = process.env.REACT_APP_MAIN_API_URL;
 const Home = () => {
-  const [data, setDate] = useState<RowData[]>([]);
   const pageNo = 1;
+  const limit = 5;
+  const { msgData, setMsgData } = useMsgDataStore();
+  const { data: msg } = useSWR(msgUrl + `&pageNo=${pageNo}&numOfRows=${limit}`, fetcher);
 
   useEffect(() => {
-    const url = process.env.REACT_APP_MAIN_API_URL + "?ServiceKey=" + process.env.REACT_APP_API_KEY + `&pageNo=${pageNo}&numOfRows=5&type=JSON`;
+    if (msg === undefined) return;
+    setMsgData(msg.DisasterMsg[1].row);
 
-    axios.get(`${url}`).then((res) => {
-      setDate(res.data.DisasterMsg[1].row);
-    });
     // setDate([rowDummyData]);
-  }, []);
+  }, [msg]);
 
   const porps = {
-    data: data
+    data: msgData
   };
   return (
     <>
       <BoxContentTitleTextView {...porps} />
+      <PaginationView />
     </>
   );
 };

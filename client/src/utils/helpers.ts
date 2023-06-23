@@ -28,3 +28,17 @@ export function makeId(length: number) {
   }
   return result;
 }
+
+/*
+ * @name arraysHaveSameContent
+ * @description 두 배열이 같은 요소를 가지고 있는지 확인합니다.
+ * @param {any[]} array1
+ * @param {any[]} array2
+ * @returns {boolean}
+ * */
+export function arraysHaveSameContent(array1: any[], array2: any[]) {
+  const sortedArray1 = array1.slice().sort();
+  const sortedArray2 = array2.slice().sort();
+
+  return JSON.stringify(sortedArray1) === JSON.stringify(sortedArray2);
+}

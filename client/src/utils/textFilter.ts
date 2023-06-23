@@ -21,6 +21,7 @@ export function handelRemoveSubstring(msg: string | undefined, subString: string
  * text 에서 removeText 를 찾아서 removeText 뒤의 문자열을 제거 한다.
  * */
 export function handleRemoveAfterBracket(text: string, removeText: string) {
+  if (text === undefined) return "";
   let endIndex = text.indexOf(removeText);
 
   if (endIndex !== -1) {
@@ -41,6 +42,8 @@ export function handleRemoveAfterBracket(text: string, removeText: string) {
  * */
 
 export function handleRemoveBeforeBracket(text: string, removeText: string, subString: string) {
+  if (text === undefined) return "";
+
   let startIndex = text.indexOf(removeText);
 
   if (startIndex !== -1) {

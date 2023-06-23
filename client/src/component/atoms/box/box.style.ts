@@ -14,6 +14,7 @@ export const ItemBoxStyle = styled.div`
   box-shadow: 0 2px 10px 0 rgba(51, 68, 105, 0.3);
   width: 100%;
   max-width: 800px;
+  min-width: 320px;
   max-height: 120px;
   flex-shrink: 0;
   margin: 0 auto;
@@ -53,4 +54,39 @@ export const ItemDateStyle = styled.p`
   color: var(--color-gray);
   margin-top: 10px;
   margin-left: auto;
+`;
+
+export const ItemRefreshDateStyle = styled.div`
+  font-size: 12px;
+  color: var(--color-gray);
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    color: var(--color-gray);
+    margin-right: 5px;
+    transition: all 0.3s;
+    path {
+      fill: var(--color-gray);
+    }
+  }
+
+  &:hover svg {
+    transform: rotate(360deg);
+  }
+`;
+
+export const ItemTitleDateStyle = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 800px;
+  min-width: 320px;
+  h3 {
+    margin: 0;
+  }
 `;

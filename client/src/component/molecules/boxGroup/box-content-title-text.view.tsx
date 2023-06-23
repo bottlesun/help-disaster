@@ -1,14 +1,21 @@
+import { RowData } from "@type/api.type";
 import { handleRemoveAfterBracket, handleRemoveBeforeBracket } from "@utils/textFilter";
 import React from "react";
 import BoxItemView from "../../atoms/box/box-item.view";
 import { ItemContainerStyle, ItemDateStyle, ItemTextStyle, ItemTitleStyle } from "../../atoms/box/box.style";
+import BoxTitleDateView from "./box-title-date.view";
 
-const BoxContentTitleTextView = ({ data }: any) => {
+type BoxContentTitleTextProps = {
+  data: RowData[];
+};
+
+const BoxContentTitleTextView = ({ data }: BoxContentTitleTextProps) => {
   return (
     <ItemContainerStyle>
-      {data.map((item: any) => {
+      <BoxTitleDateView />
+      {data.map((item: RowData) => {
         return (
-          <BoxItemView key={item.location_id}>
+          <BoxItemView key={item.md101_sn}>
             <ItemTitleStyle>
               <span>{handleRemoveAfterBracket(item.msg, "]")}</span>
               {item.location_name}
