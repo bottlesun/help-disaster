@@ -5,13 +5,14 @@ import useSWR from "swr";
 import PaginationView from "../../atoms/pagination/pagination.view";
 import BoxContentTitleTextView from "../../molecules/boxGroup/box-content-title-text.view";
 import Pagination from "../../atoms/pagination/pagination";
+import {UsePaginationStore} from "@stores/usePagination.store";
 
 export const msgUrl = process.env.REACT_APP_MAIN_API_URL;
 const Home = () => {
-  const [pageNo,setPageNo] = useState(1);
+  const {page , setPage} = UsePaginationStore();
   const limit = 5;
   const { msgData, setMsgData } = useMsgDataStore();
-  const { data: msg } = useSWR(msgUrl + `&pageNo=${pageNo}&numOfRows=${limit}`, fetcher);
+  const { data: msg } = useSWR(msgUrl + `&pageNo=${page}&numOfRows=${limit}`, fetcher);
   const total = msg !== undefined ? msg.DisasterMsg[0].head[0].totalCount : 0;
 
 
@@ -26,8 +27,8 @@ const Home = () => {
     data: msgData,
     pagination:{
       total: total ,
-      pageNo: pageNo,
-      setPageNo: setPageNo,
+      page: page,
+      setPage: setPage,
       limit: limit,
   }
   };
