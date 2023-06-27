@@ -15,9 +15,9 @@ export const ItemBoxStyle = styled.div`
   width: 100%;
   max-width: 800px;
   min-width: 320px;
-  max-height: 120px;
+  max-height: 125px;
   flex-shrink: 0;
-  margin: 0 auto;
+  margin: 10px auto 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

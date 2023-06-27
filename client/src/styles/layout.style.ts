@@ -7,7 +7,7 @@ export const LayoutStyle = styled.div`
   padding: 0 15px;
   .inner {
     position: relative;
-    min-height: calc(100vh - 80px);
+    min-height: calc(100vh - 160px);
     padding: 30px 50px;
     border: 1px solid red;
     color: var(--color-text-blue);

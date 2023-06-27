@@ -6,16 +6,10 @@ import React, { useState } from "react";
 import useSWR from "swr";
 import { msgUrl } from "../../../organisms/home";
 import BoxRefreshDateView from "./box-refresh-date.view";
-import {UsePaginationStore} from "@stores/usePagination.store";
-
-export type BoxTitleDateViewProps = {
-  onClick: any;
-  date: Dayjs | null | string;
-};
 
 const BoxRefreshDate = () => {
   const { msgData, setMsgData } = useMsgDataStore();
-  const {  setPage} = UsePaginationStore();
+  // const { setPage } = UsePaginationStore();
   const [date, setDate] = useState<Dayjs | null | string>(dayjs().format("YYYY/MM/DD A HH:mm:ss"));
   const { data: msg } = useSWR(msgUrl + "&pageNo=1&numOfRows=5", fetcher);
   const onClickDateRefresh = () => {
@@ -23,7 +17,7 @@ const BoxRefreshDate = () => {
     if (msg === undefined) return;
     if (arraysHaveSameContent(msg.DisasterMsg[1].row, msgData)) return;
     setMsgData(msg.DisasterMsg[1].row);
-    setPage(1)
+    // setPage(1);
   };
 
   const props = {
