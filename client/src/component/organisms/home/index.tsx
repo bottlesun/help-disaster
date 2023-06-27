@@ -27,6 +27,7 @@ const Home = () => {
     if (data === undefined) return;
     setMsgData(data[0]);
     // if (msg === undefined) return;
+
     // setMsgData(msg.DisasterMsg[1].row);
   }, [data]);
 
