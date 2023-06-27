@@ -9,36 +9,30 @@ import BoxContentTitleTextView from "../../molecules/boxGroup/box-content-title-
 
 export const msgUrl = process.env.REACT_APP_MAIN_API_URL;
 
-const getKey = (pageIndex: number, previousPageData: RowData[]) => {
-  if (pageIndex === 0) return msgUrl + `&pageNo=1&numOfRows=5`;
-  if (previousPageData && !previousPageData.length) return null;
-  return msgUrl + `&pageNo=${pageIndex}&numOfRows=8`;
-};
-
 const Home = () => {
   const { page, setPage } = UsePaginationStore();
   const { msgData, setMsgData } = useMsgDataStore();
 
-  // const posts: RowData[] = msgData ? ([] as RowData[]).concat(...msgData) : [];
+  const getKey = (pageIndex: number, previousPageData: RowData[]) => {
+    if (page === 1) return msgUrl + `&pageNo=1&numOfRows=8`;
+    if (previousPageData && !previousPageData.length) return null;
+    return msgUrl + `&pageNo=${page}&numOfRows=8`;
+  };
 
   const { data } = useSWRInfinite(getKey, scrollFetcher);
-
   const { data: msg, mutate: msgMutate } = useSWR(msgUrl + `&pageNo=${page}`, fetcher);
-
-  console.log(data);
-
   const total = msg !== undefined ? msg.DisasterMsg[0].head[0].totalCount : 0;
+
   useEffect(() => {
-    if (msg === undefined) return;
-    setMsgData(msg.DisasterMsg[1].row);
-  }, [msg]);
+    if (data === undefined) return;
+    setMsgData(data[0]);
+    // if (msg === undefined) return;
+    // setMsgData(msg.DisasterMsg[1].row);
+  }, [data]);
 
   function handleScroll(e: React.UIEvent<HTMLElement>) {
     const thisScrollHeight = Math.ceil(e.currentTarget.scrollTop) + e.currentTarget.clientHeight;
     const scrollMaxHeight = e.currentTarget.scrollHeight;
-
-    console.log(scrollMaxHeight, thisScrollHeight);
-
     if (thisScrollHeight === scrollMaxHeight) {
       setPage(page + 1);
     }
