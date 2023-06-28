@@ -13,9 +13,9 @@ export const ItemBoxStyle = styled.div`
   background: #fff;
   box-shadow: 0 2px 10px 0 rgba(51, 68, 105, 0.3);
   width: 100%;
+  height: 125px;
   max-width: 800px;
   min-width: 320px;
-  max-height: 125px;
   flex-shrink: 0;
   margin: 10px auto 20px;
   display: flex;

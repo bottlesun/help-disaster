@@ -4,18 +4,24 @@ import React from "react";
 import Scrollbars from "react-custom-scrollbars-2";
 import BoxItemView from "../../atoms/box/box-item.view";
 import { ItemContainerStyle, ItemDateStyle, ItemTextStyle, ItemTitleStyle } from "../../atoms/box/box.style";
+import ButtonTopScrollView from "../buttonGroup/button-top-scroll.view";
 import BoxTitleDateView from "./box-title-date.view";
 
 type BoxContentTitleTextProps = {
   data: RowData[];
   handleScroll: (e: React.UIEvent<HTMLElement>) => void;
+  isLoadingInitialData: boolean;
 };
 
-const BoxContentTitleTextView = ({ data, handleScroll }: BoxContentTitleTextProps) => {
+const BoxContentTitleTextView = ({ data, handleScroll, isLoadingInitialData }: BoxContentTitleTextProps) => {
   return (
     <ItemContainerStyle>
       <BoxTitleDateView />
       <Scrollbars autoHide universal autoHideTimeout={1000} autoHideDuration={300} autoHeight autoHeightMax={"580px"} onScroll={(e) => handleScroll(e)}>
+        {isLoadingInitialData &&
+          Array.from([1, 2, 3, 4]).map((_, index) => {
+            return <BoxItemView key={index} />;
+          })}
         {data.map((item: RowData) => {
           return (
             <BoxItemView key={item.md101_sn}>
@@ -29,6 +35,7 @@ const BoxContentTitleTextView = ({ data, handleScroll }: BoxContentTitleTextProp
           );
         })}
       </Scrollbars>
+      <ButtonTopScrollView />
     </ItemContainerStyle>
   );
 };
