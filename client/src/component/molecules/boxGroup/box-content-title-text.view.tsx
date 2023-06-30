@@ -1,23 +1,24 @@
 import { RowData } from "@type/api.type";
 import { handleRemoveAfterBracket, handleRemoveBeforeBracket } from "@utils/textFilter";
-import React from "react";
+import React, { ForwardedRef, forwardRef } from "react";
 import Scrollbars from "react-custom-scrollbars-2";
 import BoxItemView from "../../atoms/box/box-item.view";
 import { ItemContainerStyle, ItemDateStyle, ItemTextStyle, ItemTitleStyle } from "../../atoms/box/box.style";
-import ButtonTopScrollView from "../buttonGroup/button-top-scroll.view";
+import ButtonTopScrollView, { ButtonTopScrollViewProps } from "../buttonGroup/button-top-scroll.view";
 import BoxTitleDateView from "./box-title-date.view";
 
 type BoxContentTitleTextProps = {
   data: RowData[];
-  handleScroll: (e: React.UIEvent<HTMLElement>) => void;
+  handleScroll: () => void;
+  handleTopScroll: () => void;
   isLoadingInitialData: boolean;
-};
+} & ButtonTopScrollViewProps;
 
-const BoxContentTitleTextView = ({ data, handleScroll, isLoadingInitialData }: BoxContentTitleTextProps) => {
+const BoxContentTitleTextView = forwardRef(({ data, handleScroll, handleTopScroll, isLoadingInitialData }: BoxContentTitleTextProps, ref: ForwardedRef<Scrollbars>) => {
   return (
     <ItemContainerStyle>
       <BoxTitleDateView />
-      <Scrollbars autoHide universal autoHideTimeout={1000} autoHideDuration={300} autoHeight autoHeightMax={"580px"} onScroll={(e) => handleScroll(e)}>
+      <Scrollbars ref={ref} autoHide universal autoHideTimeout={1000} autoHideDuration={300} autoHeight autoHeightMax={"580px"} onScroll={handleScroll}>
         {isLoadingInitialData &&
           Array.from([1, 2, 3, 4]).map((_, index) => {
             return <BoxItemView key={index} />;
@@ -35,9 +36,9 @@ const BoxContentTitleTextView = ({ data, handleScroll, isLoadingInitialData }: B
           );
         })}
       </Scrollbars>
-      <ButtonTopScrollView />
+      <ButtonTopScrollView handleTopScroll={handleTopScroll} />
     </ItemContainerStyle>
   );
-};
+});
 
 export default BoxContentTitleTextView;

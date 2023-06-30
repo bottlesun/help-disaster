@@ -1,12 +1,16 @@
 import React from "react";
 import { BsFillCaretUpFill } from "react-icons/bs";
+import { TopButtonStyle } from "../../atoms/button/button.style";
 
-const ButtonTopScrollView = () => {
+export type ButtonTopScrollViewProps = {
+  handleTopScroll: (e: React.UIEvent<HTMLElement>) => void;
+};
+const ButtonTopScrollView = ({ handleTopScroll }: ButtonTopScrollViewProps) => {
   return (
-    <div>
+    <TopButtonStyle onClick={handleTopScroll}>
       <BsFillCaretUpFill />
       Top
-    </div>
+    </TopButtonStyle>
   );
 };
 export default ButtonTopScrollView;

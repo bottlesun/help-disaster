@@ -66,3 +66,22 @@ export const LoginButtonStyle = styled.div`
     border-radius: 9999px;
   }
 `;
+
+export const TopButtonStyle = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-main-dark);
+  transition: all 0.2s;
+  * {
+    color: var(--color-main-dark);
+  }
+
+  &:hover {
+    color: var(--color-main);
+    * {
+      color: var(--color-main);
+    }
+  }
+`;
