@@ -3,21 +3,31 @@ import { handleRemoveAfterBracket, handleRemoveBeforeBracket } from "@utils/text
 import React, { ForwardedRef, forwardRef } from "react";
 import Scrollbars from "react-custom-scrollbars-2";
 import BoxItemView from "../../atoms/box/box-item.view";
-import { ItemContainerStyle, ItemDateStyle, ItemTextStyle, ItemTitleStyle } from "../../atoms/box/box.style";
+import {
+  ItemContainerStyle,
+  ItemDateStyle,
+  ItemTextStyle,
+  ItemTitleStyle,
+  ItemTopButtonWrapStyle
+} from "../../atoms/box/box.style";
 import ButtonTopScrollView, { ButtonTopScrollViewProps } from "../buttonGroup/button-top-scroll.view";
-import BoxTitleDateView from "./box-title-date.view";
+import BoxTitleDateView  from "./box-title-date.view";
+import {BoxTitleDateViewProps} from "./box-refresh-date/box-refresh-date";
 
 type BoxContentTitleTextProps = {
   data: RowData[];
   handleScroll: () => void;
   handleTopScroll: () => void;
   isLoadingInitialData: boolean;
+  dateProps: BoxTitleDateViewProps;
+  scrollLocation: number;
 } & ButtonTopScrollViewProps;
 
-const BoxContentTitleTextView = forwardRef(({ data, handleScroll, handleTopScroll, isLoadingInitialData }: BoxContentTitleTextProps, ref: ForwardedRef<Scrollbars>) => {
+const BoxContentTitleTextView = forwardRef(({ scrollLocation,data, handleScroll, handleTopScroll, isLoadingInitialData ,dateProps}: BoxContentTitleTextProps, ref: ForwardedRef<Scrollbars>) => {
+
   return (
     <ItemContainerStyle>
-      <BoxTitleDateView />
+      <BoxTitleDateView {...dateProps} />
       <Scrollbars ref={ref} autoHide universal autoHideTimeout={1000} autoHideDuration={300} autoHeight autoHeightMax={"580px"} onScroll={handleScroll}>
         {isLoadingInitialData &&
           Array.from([1, 2, 3, 4]).map((_, index) => {
@@ -36,7 +46,11 @@ const BoxContentTitleTextView = forwardRef(({ data, handleScroll, handleTopScrol
           );
         })}
       </Scrollbars>
-      <ButtonTopScrollView handleTopScroll={handleTopScroll} />
+      <ItemTopButtonWrapStyle>
+        {
+          scrollLocation > 1 && <ButtonTopScrollView handleTopScroll={handleTopScroll} />
+        }
+      </ItemTopButtonWrapStyle>
     </ItemContainerStyle>
   );
 });

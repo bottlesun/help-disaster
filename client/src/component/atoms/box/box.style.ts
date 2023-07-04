@@ -90,3 +90,8 @@ export const ItemTitleDateStyle = styled.div`
     margin: 0;
   }
 `;
+
+export const ItemTopButtonWrapStyle = styled.div`
+width: 100%;
+  height: 50px;
+`

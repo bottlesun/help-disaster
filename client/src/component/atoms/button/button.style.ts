@@ -74,6 +74,8 @@ export const TopButtonStyle = styled.div`
   cursor: pointer;
   color: var(--color-main-dark);
   transition: all 0.2s;
+  width: 100%;
+  height: 100%;
   * {
     color: var(--color-main-dark);
   }

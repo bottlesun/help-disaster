@@ -1,9 +1,7 @@
 import { useMsgDataStore } from "@stores/useMsgData.store";
-import { UsePaginationStore } from "@stores/usePagination.store";
-import { useRefreshStore } from "@stores/useRefresh.store";
 import { RowData } from "@type/api.type";
 import { scrollFetcher } from "@utils/fetcher";
-import React, { useEffect } from "react";
+import React, {useEffect, useState} from "react";
 import Scrollbars from "react-custom-scrollbars-2";
 import useSWRInfinite from "swr/infinite";
 import BoxContentTitleTextView from "../../molecules/boxGroup/box-content-title-text.view";
@@ -11,11 +9,12 @@ import BoxContentTitleTextView from "../../molecules/boxGroup/box-content-title-
 export const msgUrl = process.env.REACT_APP_MAIN_API_URL;
 
 const Home = () => {
-  const { limit, setLimit } = UsePaginationStore();
   const { msgData, setMsgData } = useMsgDataStore();
-  const { refresh, setRefresh } = useRefreshStore();
   const scrollRef = React.useRef<Scrollbars>(null);
-
+  const [limit, setLimit] = useState(8);
+  const [page, setPage] = useState(1);
+  const [refresh, setRefresh] = useState(false);
+  const [scrollLocation, setScrollLocation] = useState(0);
   const getKey = (pageIndex: number, previousPageData: RowData[]) => {
     // if (page === 1) return msgUrl + `&pageNo=1&numOfRows=8`;
     if (previousPageData && !previousPageData.length) return null;
@@ -30,6 +29,8 @@ const Home = () => {
     mutate();
   }, [data, limit, refresh]);
 
+
+
   function handleScroll() {
     const scroll = scrollRef.current;
     const scrollValue = scrollRef.current?.getValues();
@@ -38,6 +39,12 @@ const Home = () => {
 
     const thisScrollHeight = Math.ceil(scrollValue.scrollTop) + scrollValue.clientHeight;
     const scrollMaxHeight = scrollValue.scrollHeight;
+
+    if(scrollValue.scrollTop === 0){
+      setScrollLocation(Number(scrollValue.scrollTop));
+    } else{
+      if(scrollLocation <= 1) setScrollLocation(Number(scrollValue.scrollTop));
+    }
 
     if (thisScrollHeight === scrollMaxHeight) {
       console.log("scroll bottom!");
@@ -51,18 +58,25 @@ const Home = () => {
 
   function handleTopScroll() {
     const scroll = scrollRef.current;
-    console.log(scroll);
     if (!scroll) return;
 
     return scrollRef.current.scrollTop(0);
   }
+
 
   const props = {
     data: msgData,
     handleScroll: handleScroll,
     handleTopScroll: handleTopScroll,
     isLoadingInitialData: isLoadingInitialData,
-    ref: scrollRef
+    ref: scrollRef,
+    scrollLocation: scrollLocation,
+    dateProps:{
+      limit: limit,
+      setLimit: setLimit,
+      refresh: refresh,
+      setRefresh: setRefresh
+    }
     // pagination: {
     //   total: total,
     //   page: page,
