@@ -6,13 +6,12 @@ import {
   Param,
   Patch,
   Post,
-  UsePipes,
-  ValidationPipe,
 } from '@nestjs/common';
-import { Board, BoardStatues } from './board-statues.enum';
+import { BoardStatues } from './board-statues.enum';
 import { BoardsService } from './boards.service';
 import { CreateBoardDto } from './dto/create-board.dto';
 import { BoardStatusPipe } from './pipe/board-status.pipe';
+import {Board} from "./board.entity";
 
 @Controller('/boards')
 export class BoardsController {
@@ -21,32 +20,32 @@ export class BoardsController {
     this.boardsService = boardsService; // boardsService 를 boardsService 로 사용하겠다.
   }
 
+
   @Post()
-  @UsePipes(ValidationPipe) // 파이프를 사용하면 dto에서 설정한 유효성 검사를 자동으로 해준다.
-  createBoards(@Body() createBoardDto: CreateBoardDto): Board {
+  createBoard(@Body() createBoardDto : CreateBoardDto){
     return this.boardsService.createBoards(createBoardDto);
   }
 
   @Get()
-  getAllBoards(): Board[] {
+  getAllBoards(){
     return this.boardsService.getAllBoards();
   }
 
   @Get('/:id')
-  getBoardById(@Param('id') id: string) {
+  getBoardById(@Param('id') id : number) : Promise<Board> {
     return this.boardsService.getBoardById(id);
   }
 
   @Delete('/:id')
-  deleteBoard(@Param('id') id: string): void {
-    this.boardsService.deleteBoard(id);
+  deleteBoard(@Param('id') id : number) : Promise<void> {
+    return this.boardsService.deleteBoard(id)
   }
 
   @Patch('/:id/status')
   updateBoardStatus(
-    @Param('id') id: string,
-    @Body('status', BoardStatusPipe) status: BoardStatues,
-  ) {
-    return this.boardsService.updateBoardStatus(id, status);
+    @Param('id') id :number,
+    @Body('status', BoardStatusPipe) status : BoardStatues
+  ) : Promise<Board> {
+    return this.boardsService.updateBoardStatus(id, status)
   }
 }
