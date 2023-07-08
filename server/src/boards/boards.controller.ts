@@ -5,15 +5,17 @@ import {
   Get,
   Param,
   Patch,
-  Post,
+  Post, UseGuards,
 } from '@nestjs/common';
 import { BoardStatues } from './board-statues.enum';
 import { BoardsService } from './boards.service';
 import { CreateBoardDto } from './dto/create-board.dto';
 import { BoardStatusPipe } from './pipe/board-status.pipe';
 import {Board} from "./board.entity";
+import {AuthGuard} from "@nestjs/passport";
 
 @Controller('/boards')
+@UseGuards(AuthGuard()) // 토큰 검사  전역으로 설정
 export class BoardsController {
   // Service 에서 Controller 사용 할 수 있게 해주기
   constructor(private boardsService: BoardsService) {

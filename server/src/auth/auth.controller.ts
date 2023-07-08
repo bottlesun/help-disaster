@@ -1,9 +1,10 @@
-import {Body, Controller, Get, Param, Patch, Post, ValidationPipe} from '@nestjs/common';
+import {Body, Controller, Get, Param, Patch, Post, Req, UseGuards, ValidationPipe} from '@nestjs/common';
 import {AuthCredentialsDto} from "./dto/auth.dto";
 import {AuthService} from "./auth.service";
 import {User} from "./user.entity";
 import {UserStatus} from "./auth-statues.enum";
 import {AuthStatusPipe} from "./pipe/auth-status.pipe";
+import {AuthGuard} from "@nestjs/passport";
 
 @Controller('auth')
 export class AuthController {
@@ -20,6 +21,7 @@ export class AuthController {
   }
 
   @Get('/user')
+  // @UseGuards(AuthGuard())
   getSignList(): Promise<User[]> {
     return this.authService.getSignList();
   }
@@ -41,4 +43,10 @@ export class AuthController {
   logIn(@Body(ValidationPipe) authCredentialsDto: AuthCredentialsDto){
     return this.authService.logIn(authCredentialsDto)
   }
+
+  // @Post('/test')
+  // @UseGuards(AuthGuard()) // 토큰 검사
+  // authTest(@Req() req){
+  //   console.log(req.user)
+  // }
 }
