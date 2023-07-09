@@ -1,7 +1,7 @@
 import {Body, Controller, Get, Param, Patch, Post, Req, UseGuards, ValidationPipe} from '@nestjs/common';
 import {AuthCredentialsDto} from "./dto/auth.dto";
 import {AuthService} from "./auth.service";
-import {User} from "./user.entity";
+import {User} from "../entity/user.entity";
 import {UserStatus} from "./auth-statues.enum";
 import {AuthStatusPipe} from "./pipe/auth-status.pipe";
 import {AuthGuard} from "@nestjs/passport";

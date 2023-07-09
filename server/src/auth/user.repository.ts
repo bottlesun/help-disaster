@@ -1,5 +1,5 @@
 import {CustomRepository} from "../database/typeorm-ex.decorator";
-import {User} from "./user.entity";
+import {User} from "../entity/user.entity";
 import {Repository} from "typeorm";
 import {AuthCredentialsDto} from "./dto/auth.dto";
 import {ConflictException, InternalServerErrorException} from "@nestjs/common";

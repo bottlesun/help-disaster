@@ -1,6 +1,6 @@
 import {CustomRepository} from "../database/typeorm-ex.decorator";
-import {Board} from "./board.entity";
 import {Repository} from "typeorm";
+import {Board} from "../entity/board.entity";
 
 @CustomRepository(Board)
 export class BoardRepository extends Repository<Board> {}

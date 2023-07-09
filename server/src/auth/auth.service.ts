@@ -2,7 +2,7 @@ import {Injectable, NotFoundException, UnauthorizedException} from '@nestjs/comm
 import {UserRepository} from "./user.repository";
 import {AuthCredentialsDto} from "./dto/auth.dto";
 import * as bcrypt from 'bcryptjs';
-import {User} from "./user.entity";
+import {User} from "../entity/user.entity";
 import {UserStatus} from "./auth-statues.enum";
 import {JwtService} from "@nestjs/jwt";
 
