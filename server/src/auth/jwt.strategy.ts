@@ -12,7 +12,7 @@ export class JwtStrategy extends PassportStrategy(Strategy){
   // JwtStrategy 는 PassportStrategy 를 상속받는다.
   constructor(  private userRepository: UserRepository) {
     super({ // super 는 부모 클래스의 생성자를 호출한다.
-      secretOrKey: process.env.JWT_SECRET  || config.get('jwt.secret'),
+      secretOrKey: config.get('jwt.secret') || process.env.JWT_SECRET,
       // jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken 은 헤더에 있는 토큰을 가져온다.
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
     });

@@ -1,17 +1,22 @@
-import { useLoginTestStore } from "@stores/useLoginTest.store";
+import {useLoginTestStore} from "@stores/useLoginTest.store";
 import React from "react";
-import { Navigate } from "react-router";
+import {Navigate} from "react-router";
 import Login from "../../component/organisms/login";
 import LoginLayoutView from "../../layouts/loginLayout.view";
+import BoxLoginImgTextView from "../../component/molecules/boxGroup/box-login-img-text.view";
+import {LoginContainerStyle} from "../../component/organisms/login/login.style";
 
 const LoginPage = () => {
-  const { login } = useLoginTestStore();
+  const {login} = useLoginTestStore();
 
   return (
     <>
-      {login && <Navigate to="/" replace={true} />}
+      {login && <Navigate to="/" replace={true}/>}
       <LoginLayoutView>
-        <Login />
+        <LoginContainerStyle>
+          <BoxLoginImgTextView/>
+          <Login/>
+        </LoginContainerStyle>
       </LoginLayoutView>
     </>
   );

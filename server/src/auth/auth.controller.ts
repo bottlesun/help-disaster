@@ -1,5 +1,5 @@
 import {Body, Controller, Get, Param, Patch, Post, Req, UseGuards, ValidationPipe} from '@nestjs/common';
-import {AuthCredentialsDto} from "./dto/auth.dto";
+import {AuthCredentialsDto, AuthSignUpDto} from "./dto/auth.dto";
 import {AuthService} from "./auth.service";
 import {User} from "../entity/user.entity";
 import {UserStatus} from "./auth-statues.enum";
@@ -16,8 +16,8 @@ export class AuthController {
 
   @Post('/signup')
   //ValidationPipe 는 dto 에서 설정한 유효성 검사를 실행한다.
-  signUp(@Body(ValidationPipe) authCredentialsDto: AuthCredentialsDto): Promise<void> {
-    return this.authService.signUp(authCredentialsDto);
+  signUp(@Body(ValidationPipe) authSignUpDto: AuthSignUpDto): Promise<void> {
+    return this.authService.signUp(authSignUpDto);
   }
 
   @Get('/user')
@@ -31,11 +31,11 @@ export class AuthController {
     return this.authService.getUserById(id);
   }
 
-  @Patch('/user/status/:id')
+  @Patch('/status/:id')
   updateUserStatus(
     @Param('id') id: number,
     @Body('status', AuthStatusPipe) status: UserStatus
-  ) {
+  ) : Promise<User> {
     return this.authService.updateUserStatus(id, status);
   }
 

@@ -56,7 +56,7 @@ export class BoardsController {
     return this.boardsService.deleteBoard(id)
   }
 
-  @Patch('/:id/status')
+  @Patch('/status/:id')
   updateBoardStatus(
     @Param('id') id :number,
     @Body('status', BoardStatusPipe) status : BoardStatues

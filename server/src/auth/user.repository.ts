@@ -1,14 +1,14 @@
 import {CustomRepository} from "../database/typeorm-ex.decorator";
 import {User} from "../entity/user.entity";
 import {Repository} from "typeorm";
-import {AuthCredentialsDto} from "./dto/auth.dto";
+import {AuthCredentialsDto, AuthSignUpDto} from "./dto/auth.dto";
 import {ConflictException, InternalServerErrorException} from "@nestjs/common";
 import * as bcrypt from 'bcryptjs';
 import {UserStatus} from "./auth-statues.enum";
 @CustomRepository(User)
 export class UserRepository extends Repository<User> {
-  async createUser(authCredentialsDto: AuthCredentialsDto): Promise<void> {
-    const {username, password} = authCredentialsDto;
+  async createUser(authSignUpDto: AuthSignUpDto): Promise<void> {
+    const {username, password , nickname } = authSignUpDto;
 
     const salt = await bcrypt.genSalt(); // salt 생성
     // console.log('salt' , salt);
@@ -19,6 +19,7 @@ export class UserRepository extends Repository<User> {
     const user = new User();
     user.username = username;
     user.password = hashedPassword;
+    user.nickname = nickname;
     user.status = UserStatus.USER;
 
     try {

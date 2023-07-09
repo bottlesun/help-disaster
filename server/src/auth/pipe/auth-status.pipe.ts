@@ -1,4 +1,4 @@
-import {ArgumentMetadata, PipeTransform} from "@nestjs/common";
+import {ArgumentMetadata, Logger, PipeTransform} from "@nestjs/common";
 import {UserStatus} from "../auth-statues.enum";
 
 export class AuthStatusPipe implements PipeTransform{
@@ -11,7 +11,8 @@ export class AuthStatusPipe implements PipeTransform{
       throw new Error(`${value} isn't in the status options`);
     }
 
-
+    Logger.log(`user status change is ${value}`);
+    return value;
   }
   private isStatusValid(status: any) {
     /**
