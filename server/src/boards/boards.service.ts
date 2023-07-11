@@ -1,34 +1,36 @@
-import {Injectable, NotFoundException} from '@nestjs/common';
-import {BoardStatues} from './board-statues.enum';
-import {CreateBoardDto} from './dto/create-board.dto';
-import {InjectRepository} from "@nestjs/typeorm";
-import {BoardRepository} from "./board.repository";
-import {Board} from "../entity/board.entity";
-import {User} from "../entity/user.entity";
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Board } from '../entity/board.entity';
+import { User } from '../entity/user.entity';
+import { BoardStatues } from './board-statues.enum';
+import { BoardRepository } from './board.repository';
+import { CreateBoardDto } from './dto/create-board.dto';
 
 @Injectable() // Injectable 은 NestJS 가 제공하는 데코레이터로, 이 데코레이터를 사용하면 클래스를 NestJS가 관리하는 Provider 로 만들어준다.
 export class BoardsService {
   constructor(
     @InjectRepository(BoardRepository)
-    private boardRepository: BoardRepository
-  ) {
-  }
+    private boardRepository: BoardRepository,
+  ) {}
 
   async getBoardById(id: number): Promise<Board> {
-    const found = await this.boardRepository.findOneBy({id: id});
+    const found = await this.boardRepository.findOneBy({ id: id });
 
     if (!found) throw new NotFoundException(`Can't find Board with id ${id}`);
 
     return found;
   }
 
-  async createBoards(createBoardDto: CreateBoardDto, user: User): Promise<Board> {
-    const {title, description} = createBoardDto;
+  async createBoards(
+    createBoardDto: CreateBoardDto,
+    user: User,
+  ): Promise<Board> {
+    const { title, description } = createBoardDto;
     const board = this.boardRepository.create({
       title,
       description,
       status: BoardStatues.PUBLIC,
-      user
+      user,
     });
 
     await this.boardRepository.save(board);
@@ -40,10 +42,10 @@ export class BoardsService {
   }
 
   async deleteBoard(id: number): Promise<void> {
-    const result = await this.boardRepository.delete({id: id});
+    const result = await this.boardRepository.delete({ id: id });
     //  console.log('result', result); //result DeleteResult { raw: [], affected: 1 }
     if (result.affected === 0) {
-      throw new NotFoundException(`Can't find Board with id ${id}`)
+      throw new NotFoundException(`Can't find Board with id ${id}`);
     }
   }
 
