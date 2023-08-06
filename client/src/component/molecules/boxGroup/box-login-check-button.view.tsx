@@ -10,7 +10,7 @@ const BoxLoginCheckButtonView = () => {
 
       <SignUpIdPwSearchStyle>
         <Link to="/signup">회원가입</Link>
-        <Link to="#">아이디 찾기</Link>
+        {/*<Link to="#">아이디 찾기</Link>*/}
       </SignUpIdPwSearchStyle>
     </LoginCheckButtonStyle>
   );

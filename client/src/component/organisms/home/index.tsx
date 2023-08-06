@@ -5,14 +5,17 @@ import React, {useEffect, useState} from "react";
 import Scrollbars from "react-custom-scrollbars-2";
 import useSWRInfinite from "swr/infinite";
 import BoxContentTitleTextView from "../../molecules/boxGroup/box-content-title-text.view";
+import {AuthApi} from "../../../api/auth.api";
 
 export const msgUrl = process.env.REACT_APP_MAIN_API_URL;
-
 const Home = () => {
+  const token = localStorage.getItem("access-token");
+  const AuthAPI = new AuthApi(token as string);
   const { msgData, setMsgData } = useMsgDataStore();
+
+
   const scrollRef = React.useRef<Scrollbars>(null);
   const [limit, setLimit] = useState(8);
-  const [page, setPage] = useState(1);
   const [refresh, setRefresh] = useState(false);
   const [scrollLocation, setScrollLocation] = useState(0);
   const getKey = (pageIndex: number, previousPageData: RowData[]) => {
@@ -28,6 +31,13 @@ const Home = () => {
     setMsgData(data[0]);
     mutate();
   }, [data, limit, refresh]);
+
+  useEffect(() => {
+    (async () => {
+      const res = await AuthAPI.getProfile();
+      console.log(res.data,"프로필");
+    })();
+  },[])
 
 
 
@@ -77,17 +87,10 @@ const Home = () => {
       refresh: refresh,
       setRefresh: setRefresh
     }
-    // pagination: {
-    //   total: total,
-    //   page: page,
-    //   setPage: setPage,
-    //   limit: 5
-    // }
   };
   return (
     <>
       <BoxContentTitleTextView {...props} />
-      {/*<Pagination {...props.pagination} />*/}
     </>
   );
 };

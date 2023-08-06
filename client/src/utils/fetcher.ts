@@ -17,15 +17,3 @@ export const scrollFetcher = async (url: string) => {
     throw error.response.data;
   }
 };
-
-
-export const dbFetcher = async (url: string) => {
-
-  try {
-    const res = await axios.get(url);
-    return res.data;
-  } catch (error:any) {
-    throw error.response.data;
-  }
-
-}

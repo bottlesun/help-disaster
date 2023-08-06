@@ -42,3 +42,47 @@ export function arraysHaveSameContent(array1: any[], array2: any[]) {
 
   return JSON.stringify(sortedArray1) === JSON.stringify(sortedArray2);
 }
+
+
+
+/*
+* @name saveTokenToLocalStorage
+* @description 로컬 스토리지에 토큰을 저장합니다.
+* @param {string} token
+* */
+export function saveTokenToLocalStorage (token : string) {
+  const expirationTimeInMillis = 60 * 60 * 1000; // 분을 밀리초로 변환
+  const expirationDate = new Date().getTime() + expirationTimeInMillis; // 현재 시간에 유효 기간을 더한 값
+
+  localStorage.setItem('access-token', token);
+  localStorage.setItem('tokenExpiration', expirationDate.toString())
+}
+
+/*
+* @name removeTokenFromLocalStorage
+* @description 로컬 스토리지에서 토큰을 삭제합니다.
+* */
+function removeTokenFromLocalStorage () {
+  localStorage.removeItem('access-token');
+  localStorage.removeItem('tokenExpiration');
+};
+
+/*
+* @name checkTokenExpiration
+* @description 토큰이 만료되었는지 확인하고, 만료되었다면 삭제합니다.
+* @returns {void}
+* */
+export function checkTokenExpiration() {
+  console.log('checkTokenExpiration 실행')
+  const tokenExpiration = localStorage.getItem('tokenExpiration');
+
+  if (tokenExpiration) {
+    const currentTime = new Date().getTime();
+    const expirationTime = parseInt(tokenExpiration);
+
+    if (currentTime > expirationTime) {
+      // 토큰이 만료되었으므로 삭제
+      removeTokenFromLocalStorage();
+    }
+  }
+};

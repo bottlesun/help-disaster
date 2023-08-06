@@ -5,6 +5,7 @@ import {User} from "../entity/user.entity";
 import {UserStatus} from "./auth-statues.enum";
 import {AuthStatusPipe} from "./pipe/auth-status.pipe";
 import {AuthGuard} from "@nestjs/passport";
+import {JwtStrategy} from "./jwt.strategy";
 
 @Controller('auth')
 export class AuthController {
@@ -29,6 +30,17 @@ export class AuthController {
   @Get('/user/:id')
   getUserById(@Param('id') id: number): Promise<User> {
     return this.authService.getUserById(id);
+  }
+
+  // 로그인된 사용자의 정보를 추출하여 사용
+  @Get('/profile')
+  @UseGuards(AuthGuard())
+  getProfile(@Req() request): string {
+    // JwtAuthGuard를 사용하여 요청 헤더에 포함된 토큰을 검증하고, 로그인된 사용자 정보를 추출합니다.
+    const user = request.user;
+    console.log(user)
+    // 추출한 사용자 정보를 이용하여 로직을 수행하거나 반환할 수 있습니다.
+    return request.user
   }
 
   @Patch('/status/:id')

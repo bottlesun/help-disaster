@@ -6,8 +6,11 @@ import SignupPage from "@pages/user/signup";
 import { globalStyle } from "@styles/global.style";
 import React from "react";
 import { Route, Routes } from "react-router";
+import {checkTokenExpiration} from "@utils/helpers";
 
 function App() {
+  checkTokenExpiration();
+
   return (
     <>
       <Global styles={globalStyle} />
