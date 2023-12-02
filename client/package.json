@@ -6,7 +6,7 @@
   "scripts": {
     "start": "craco start",
     "dev": "craco start",
-    "build": "craco build",
+    "build": "env-cmd -f .env craco build",
     "test": "craco test",
     "eject": "craco eject"
   },
@@ -35,6 +35,7 @@
     "@emotion/styled": "^11.11.0",
     "axios": "^1.4.0",
     "dayjs": "^1.11.8",
+    "env-cmd": "^10.1.0",
     "gravatar": "^1.8.2",
     "react": "^18.2.0",
     "react-custom-scrollbars-2": "^4.5.0",
