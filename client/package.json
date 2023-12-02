@@ -2,7 +2,7 @@
   "name": "help-disaster-client",
   "version": "1.0.0",
   "private": true,
-  "homepage": "./",
+  "homepage": "./help-disaster/build/",
   "scripts": {
     "start": "craco start",
     "dev": "craco start",
