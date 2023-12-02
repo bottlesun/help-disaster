@@ -13,7 +13,6 @@ const Home = () => {
   const AuthAPI = new AuthApi(token as string);
   const { msgData, setMsgData } = useMsgDataStore();
 
-
   const scrollRef = React.useRef<Scrollbars>(null);
   const [limit, setLimit] = useState(8);
   const [refresh, setRefresh] = useState(false);

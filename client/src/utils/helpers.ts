@@ -73,7 +73,7 @@ function removeTokenFromLocalStorage () {
 * @returns {void}
 * */
 export function checkTokenExpiration() {
-  console.log('checkTokenExpiration 실행')
+  // console.log('checkTokenExpiration 실행')
   const tokenExpiration = localStorage.getItem('tokenExpiration');
 
   if (tokenExpiration) {
