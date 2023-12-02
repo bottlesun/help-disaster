@@ -28,7 +28,7 @@ const BoxContentTitleTextView = forwardRef(({ scrollLocation,data, handleScroll,
   return (
     <ItemContainerStyle>
       <BoxTitleDateView {...dateProps} />
-      <Scrollbars ref={ref} autoHide universal autoHideTimeout={1000} autoHideDuration={300} autoHeight autoHeightMax={"580px"} onScroll={handleScroll}>
+      <Scrollbars ref={ref} autoHide universal autoHideTimeout={1000} autoHideDuration={300} autoHeight autoHeightMax={"60vh"} onScroll={handleScroll}>
         {isLoadingInitialData &&
           Array.from([1, 2, 3, 4]).map((_, index) => {
             return <BoxItemView key={index} />;

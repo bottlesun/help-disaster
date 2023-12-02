@@ -11,7 +11,7 @@ const HeaderView = ({ brand, src }: HeaderProps) => {
   return (
     <HeaderStyle>
       <BoxLogoView brand={brand} src={src} />
-      <ButtonLoginView login={login} />
+      {/* <ButtonLoginView login={login} /> */}
     </HeaderStyle>
   );
 };

@@ -89,6 +89,15 @@ export const ItemTitleDateStyle = styled.div`
   h3 {
     margin: 0;
   }
+
+  @media(max-width:760px){
+    flex-direction : column;
+    align-items: start;
+    gap: 15px;
+    div{
+      margin-left: auto;
+    }
+  }
 `;
 
 export const ItemTopButtonWrapStyle = styled.div`

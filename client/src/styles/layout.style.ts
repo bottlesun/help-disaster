@@ -9,7 +9,7 @@ export const LayoutStyle = styled.div`
     position: relative;
     min-height: calc(100vh - 160px);
     padding: 30px 50px;
-    border: 1px solid red;
+    // border: 1px solid red;
     color: var(--color-text-blue);
   }
   .login-inner {
@@ -20,6 +20,12 @@ export const LayoutStyle = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  @media (max-width:760px){
+    .inner{
+      padding:10px 5px;
+    }
   }
 `;
 

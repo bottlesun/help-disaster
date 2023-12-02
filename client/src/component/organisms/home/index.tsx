@@ -32,12 +32,12 @@ const Home = () => {
     mutate();
   }, [data, limit, refresh]);
 
-  useEffect(() => {
-    (async () => {
-      const res = await AuthAPI.getProfile();
-      console.log(res.data,"프로필");
-    })();
-  },[])
+  // useEffect(() => {
+  //   (async () => {
+  //     const res = await AuthAPI.getProfile();
+  //     console.log(res.data,"프로필");
+  //   })();
+  // },[])
 
 
 
