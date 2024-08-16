@@ -1,9 +1,9 @@
-import { fetcher } from "@utils/fetcher";
-import dayjs, { Dayjs } from "dayjs";
-import React, { useState } from "react";
+import {fetcher} from "@utils/fetcher";
+import dayjs, {Dayjs} from "dayjs";
+import React, {useState} from "react";
 import useSWR from "swr";
-import { msgUrl } from "../../../organisms/home";
 import BoxRefreshDateView from "./box-refresh-date.view";
+import {msgUrl, useGetDisaster} from "../../../../api/useDisaster.api";
 
 export type BoxTitleDateViewProps = {
   limit: number;
@@ -12,9 +12,9 @@ export type BoxTitleDateViewProps = {
   setRefresh: (refresh: boolean) => void;
 }
 
-const BoxRefreshDate = ({limit,setLimit,refresh,setRefresh}:BoxTitleDateViewProps) => {
+const BoxRefreshDate = ({limit, setLimit, refresh, setRefresh}: BoxTitleDateViewProps) => {
   const [date, setDate] = useState<Dayjs | null | string>(dayjs().format("YYYY/MM/DD A HH:mm:ss"));
-  const { data: msg } = useSWR(msgUrl + "&pageNo=1&numOfRows=8", fetcher);
+  const {data: msg} = useGetDisaster();
   const onClickDateRefresh = () => {
     setDate(dayjs().format("YYYY/MM/DD A HH:mm:ss"));
 
