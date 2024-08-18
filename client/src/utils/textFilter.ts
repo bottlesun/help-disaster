@@ -59,9 +59,17 @@ export function handleRemoveBeforeBracket(text: string, removeText: string, subS
 }
 
 export function removeTrailingValues(input: string) {
-  const index = input.indexOf(" vo.la");
+  const index = input.indexOf("vo.la");
   if (index !== -1) {
     return input.substring(0, index);
+  }
+  return input;
+}
+
+export function removeTrailingLastValues(input: string) {
+  const index = input.indexOf("[");
+  if (index !== -1) {
+    return input.substring(index , input.length);
   }
   return input;
 }

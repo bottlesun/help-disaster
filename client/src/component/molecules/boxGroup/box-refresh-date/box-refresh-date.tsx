@@ -1,9 +1,7 @@
-import {fetcher} from "@utils/fetcher";
 import dayjs, {Dayjs} from "dayjs";
 import React, {useState} from "react";
-import useSWR from "swr";
 import BoxRefreshDateView from "./box-refresh-date.view";
-import {msgUrl, useGetDisaster} from "../../../../api/useDisaster.api";
+import {useGetDisaster} from "../../../../api/useDisaster.api";
 
 export type BoxTitleDateViewProps = {
   limit: number;

@@ -1,5 +1,5 @@
 import {useMsgDataStore} from "@stores/useMsgData.store";
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import Scrollbars from "react-custom-scrollbars-2";
 import BoxContentTitleTextView from "../../molecules/boxGroup/box-content-title-text.view";
 import {useGetDisasterInfinite} from "../../../api/useDisaster.api";
@@ -8,7 +8,7 @@ import {useGetDisasterInfinite} from "../../../api/useDisaster.api";
 const Home = () => {
   const {msgData, setMsgData} = useMsgDataStore();
 
-  const scrollRef = React.useRef<Scrollbars>(null);
+  const scrollRef = useRef<Scrollbars>(null);
   const [limit, setLimit] = useState(8);
   const [refresh, setRefresh] = useState(false);
   const [scrollLocation, setScrollLocation] = useState(0);
@@ -16,7 +16,7 @@ const Home = () => {
 
 
   useEffect(() => {
-    if (data === undefined) return;
+    if (!data) return;
     setMsgData(data[0]);
     mutate();
   }, [data, limit, refresh]);
@@ -38,7 +38,8 @@ const Home = () => {
     }
 
     if (thisScrollHeight === scrollMaxHeight) {
-      console.log("scroll bottom!");
+      console.log("scroll bottom!", isLoadingInitialData, data);
+      if (!data) return;
       setLimit(limit + 4);
       if (refresh) {
         scroll.scrollTop(0);
@@ -69,11 +70,8 @@ const Home = () => {
       setRefresh: setRefresh
     }
   };
-  return (
-    <>
-      <BoxContentTitleTextView {...props} />
-    </>
-  );
+  return <BoxContentTitleTextView {...props} />
+
 };
 
 export default Home;
