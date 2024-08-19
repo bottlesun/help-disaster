@@ -16,6 +16,7 @@ function App() {
       <Global styles={globalStyle} />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/build" element={<HomePage />} />
         <Route path="/*" element={<Error404 />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
