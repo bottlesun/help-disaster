@@ -1,5 +1,5 @@
 import React from "react";
-import Home from "../../component/organisms/home";
+import Home from "../../component/home";
 import LayoutView from "../../layouts/layout.view";
 
 const HomePage = () => {

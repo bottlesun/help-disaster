@@ -1,15 +1,10 @@
 import React from "react";
-import Signup from "../../component/organisms/signup";
+import Signup from "../../component/signup";
 import LoginLayoutView from "../../layouts/loginLayout.view";
 
 const SignupPage = () => {
-  return (
-    <>
-      <LoginLayoutView>
-        <Signup />
-      </LoginLayoutView>
-    </>
-  );
+  return <LoginLayoutView children={<Signup/>}/>
+
 };
 
 export default SignupPage;
