@@ -42,7 +42,7 @@ export function handleRemoveAfterBracket(text: string, removeText: string) {
  * */
 
 export function handleRemoveBeforeBracket(text: string, removeText: string, subString: string) {
-  if (text === undefined) return "";
+  if (!text) return "";
 
   let startIndex = text.indexOf(removeText);
 
@@ -58,7 +58,8 @@ export function handleRemoveBeforeBracket(text: string, removeText: string, subS
   return text.replace(subString, "");
 }
 
-export function removeTrailingValues(input: string) {
+export function removeTrailingValues(input?: string) {
+  if (!input) return "";
   const index = input.indexOf("vo.la");
   if (index !== -1) {
     return input.substring(0, index);
@@ -66,10 +67,12 @@ export function removeTrailingValues(input: string) {
   return input;
 }
 
-export function removeTrailingLastValues(input: string) {
+export function removeTrailingLastValues(input?: string) {
+  if (!input) return "";
+
   const index = input.indexOf("[");
   if (index !== -1) {
-    return input.substring(index , input.length);
+    return input.substring(index, input.length);
   }
   return input;
 }

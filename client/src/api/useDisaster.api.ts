@@ -6,27 +6,34 @@ import useSWR from "swr";
 
 /**
  * Get disaster data
- * @param limit
+ * @param pageNo
  */
-export const useGetDisasterInfinite = ({limit = 8}: { limit: number }) => {
+export const useGetDisasterInfinite = ({pageNo = 1}: { pageNo: number }) => {
 
-  const url = `/api2?pageNo=1&numOfRows=${limit}`
   const getKey = (pageIndex: number, previousPageData: RowData[]) => {
-    // if (page === 1) return msgUrl + `&pageNo=1&numOfRows=8`;
+    // 이전 페이지 데이터가 없으면 더 이상 요청하지 않음 (마지막 페이지)
     if (previousPageData && !previousPageData.length) return null;
-    return url;
+
+    // pageNo을 증가시키면서 새로운 페이지의 데이터를 요청
+    return `/api2?pageNo=${pageNo}&numOfRows=10`;
   };
 
 
-  const {data, mutate, error} = useSWRInfinite(getKey, scrollFetcher);
-  const isLoadingInitialData = !data && !error;
-  return {data, mutate, error, isLoadingInitialData};
+  const {data, mutate, error, isLoading} = useSWRInfinite(getKey, scrollFetcher, {revalidateFirstPage: false});
+
+  const filterData: RowData[] = data ? data[0] : [];
+
+  return {
+    data: filterData,
+    mutate,
+    error,
+    isLoading
+  };
 }
 
 
 export const useGetDisaster = () => {
-  const url = `/api2?pageNo=1&numOfRows=8`
-  const {data, mutate, error} = useSWR(url, fetcher);
-  const isLoadingInitialData = !data && !error;
-  return {data, mutate, error, isLoadingInitialData};
+  const url = `/api2?pageNo=1&numOfRows=10`
+  const {data, mutate, error, isLoading} = useSWR(url, fetcher);
+  return {data, mutate, error, isLoading};
 }

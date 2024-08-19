@@ -41,6 +41,14 @@ export const ItemTitleStyle = styled.h3`
     span {
         margin-right: 5px;
     }
+    
+    span.loading{
+        font-size: 12px;
+        padding-left: 5px;
+        color: var(--color-gray);
+        font-weight: 400;
+        animation: opacity 1s infinite alternate;
+    }
 `;
 
 export const ItemTextStyle = styled.p`
@@ -119,3 +127,14 @@ export const ItemTopButtonWrapStyle = styled.div`
     width: 100%;
     height: 50px;
 `
+
+
+export const ItemEmptyStyle = styled.div`
+    font-size: 12px;
+    text-align: center;
+    padding: 40px;
+    color: var(--color-gray);
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px 0 rgba(51, 68, 105, 0.3);
+`;

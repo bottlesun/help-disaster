@@ -1,8 +1,4 @@
-import axios, {AxiosHeaders, AxiosHeaderValue} from "axios";
-
-const axiosHeader = {
-  'Content-Type': 'application/json',
-};
+import axios from "axios";
 
 
 export const fetcher = async (url: string) => {

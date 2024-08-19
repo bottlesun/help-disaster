@@ -2,26 +2,25 @@ import dayjs, {Dayjs} from "dayjs";
 import React, {useState} from "react";
 import BoxRefreshDateView from "./box-refresh-date.view";
 import {useGetDisaster} from "../../../../api/useDisaster.api";
+import {useMsgDataStore} from "@stores/useMsgData.store";
+import {RowData} from "@type/api.type";
 
 export type BoxTitleDateViewProps = {
-  limit: number;
-  setLimit: (limit: number) => void;
+  pageNo: number;
+  setPageNo: (limit: number) => void;
   refresh: boolean;
   setRefresh: (refresh: boolean) => void;
 }
 
-const BoxRefreshDate = ({limit, setLimit, refresh, setRefresh}: BoxTitleDateViewProps) => {
+const BoxRefreshDate = ({pageNo, setPageNo, refresh, setRefresh}: BoxTitleDateViewProps) => {
   const [date, setDate] = useState<Dayjs | null | string>(dayjs().format("YYYY/MM/DD A HH:mm:ss"));
-  const {data: msg} = useGetDisaster();
+
   const onClickDateRefresh = () => {
     setDate(dayjs().format("YYYY/MM/DD A HH:mm:ss"));
-
-    if (msg === undefined) return;
-    if (limit === 8) return;
-    setLimit(8);
-    if (!refresh) setRefresh(true);
-    // if (arraysHaveSameContent(msg.DisasterMsg[1].row, msgData)) return;
-    // setMsgData(msg.DisasterMsg[1].row);
+    setRefresh(true);
+    console.log("refresh", refresh);
+    if (pageNo === 1) return;
+    setPageNo(1);
   };
 
   const props = {

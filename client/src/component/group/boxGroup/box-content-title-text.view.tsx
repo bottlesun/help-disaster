@@ -12,7 +12,7 @@ import {BoxTitleDateViewProps} from "./box-refresh-date/box-refresh-date";
 import SpinnerView from "../../common/spinner/spinner.view";
 import {
   ItemContainerStyle,
-  ItemContentStyle, ItemDateStyle,
+  ItemContentStyle, ItemDateStyle, ItemEmptyStyle,
   ItemLocationStyle,
   ItemTextStyle,
   ItemTitleStyle, ItemTopButtonWrapStyle
@@ -20,10 +20,10 @@ import {
 import BoxItemView from "../../common/box/box-item.view";
 
 type BoxContentTitleTextProps = {
-  data: RowData[];
+  data?: RowData[];
   handleScroll: () => void;
   handleTopScroll: () => void;
-  isLoadingInitialData: boolean;
+  isLoading: boolean;
   dateProps: BoxTitleDateViewProps;
   scrollLocation: number;
 } & ButtonTopScrollViewProps;
@@ -33,18 +33,20 @@ const BoxContentTitleTextView = forwardRef(({
                                               data,
                                               handleScroll,
                                               handleTopScroll,
-                                              isLoadingInitialData,
+                                              isLoading,
                                               dateProps
                                             }: BoxContentTitleTextProps, ref: ForwardedRef<Scrollbars>) => {
 
   return (
     <ItemContainerStyle>
-      <BoxTitleDateView {...dateProps} />
+      <BoxTitleDateView {...dateProps} isLoading={isLoading} dataLength={data?.length}/>
       <Scrollbars ref={ref} autoHide universal autoHideTimeout={1000} autoHideDuration={300} autoHeight
-                  autoHeightMax={"60vh"} onScroll={handleScroll}>
+                  autoHeightMax={"calc(100vh - 330px)"}
+                  onScroll={handleScroll}>
         <ItemContentStyle>
-          {isLoadingInitialData && <SpinnerView/>}
-          {data.map((item: RowData) => {
+          {data?.length === 0 && <ItemEmptyStyle>보여지는 데이터가 없습니다.</ItemEmptyStyle>}
+          {data?.length !== 0 && isLoading && <SpinnerView/>}
+          {data?.length !== 0 && data?.map((item: RowData) => {
             return (
               <BoxItemView key={item.md101_sn}>
                 <ItemTitleStyle>
