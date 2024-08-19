@@ -11,6 +11,7 @@ const Home = () => {
   const [refresh, setRefresh] = useState(false);
   const [scrollLocation, setScrollLocation] = useState(0);
   const [msgData, setMsgData] = useState<RowData[]>([]);
+  const [firstRender, setFirstRender] = useState(true);
   const {data, isLoading} = useGetDisasterInfinite({pageNo});
 
   const handleScroll = () => {
@@ -86,6 +87,13 @@ const Home = () => {
       scrollRef.current.scrollTop(0);
     }
   }, [refresh]);
+
+  useEffect(() => {
+    if (firstRender && !isLoading) {
+      setMsgData(data);
+      data && setFirstRender(false);
+    }
+  }, [isLoading]);
 
 
   const props = {
