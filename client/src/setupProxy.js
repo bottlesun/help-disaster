@@ -1,15 +1,14 @@
 //src/setupProxy.js
 const msgKey = process.env.REACT_APP_API_KEY;
 const msgUrl = process.env.REACT_APP_API_URL;
-const {createProxyMiddleware} = require("http-proxy-middleware");
-
+const { createProxyMiddleware } = require("http-proxy-middleware");
 
 module.exports = (app) => {
   app.use(
     "/api",
     createProxyMiddleware({
       target: "http://localhost:4000",
-      changeOrigin: true,
+      changeOrigin: true
     })
   );
   app.use(
@@ -22,8 +21,8 @@ module.exports = (app) => {
         const queryString = req.url.split("?")[1]; // "pageNo=1&numOfRows=8"
 
         // 새로운 경로를 구성합니다.
-        return `/1741000/DisasterMsg5/getDisasterMsg5List?type=json&ServiceKey=${msgKey}&${queryString}`;
-      },
+        return `/1741000/DisasterMsg5/getDisasterMsg5List?type=json&serviceKey=${msgKey}&${queryString}`;
+      }
     })
   );
 };

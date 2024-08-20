@@ -1,9 +1,8 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Scrollbars from "react-custom-scrollbars-2";
 import BoxContentTitleTextView from "../group/boxGroup/box-content-title-text.view";
-import {useGetDisasterInfinite} from "../../api/useDisaster.api";
-import {RowData} from "@type/api.type";
-
+import { useGetDisasterInfinite } from "../../api/useDisaster.api";
+import { RowData } from "@type/api.type";
 
 const Home = () => {
   const scrollRef = useRef<Scrollbars>(null);
@@ -12,10 +11,10 @@ const Home = () => {
   const [scrollLocation, setScrollLocation] = useState(0);
   const [msgData, setMsgData] = useState<RowData[]>([]);
   const [firstRender, setFirstRender] = useState(true);
-  const {data, isLoading} = useGetDisasterInfinite({pageNo});
+  const { data, isLoading } = useGetDisasterInfinite({ pageNo });
 
   const handleScroll = () => {
-    console.log("scrolling");
+    // console.log("scrolling");
     const scroll = scrollRef.current;
     const scrollValue = scrollRef.current?.getValues();
     if (!scroll || !scrollValue) return;
@@ -26,7 +25,7 @@ const Home = () => {
     if (!isLoading && thisScrollHeight >= scrollMaxHeight) {
       if (pageNo === 6) return alert("최대 50개의 데이터만 불러올 수 있습니다.");
       loadMoreData();
-      const uniqueData = data.filter(item => !msgData.some(msgItem => msgItem.md101_sn === item.md101_sn));
+      const uniqueData = data.filter((item) => !msgData.some((msgItem) => msgItem.md101_sn === item.md101_sn));
       if (uniqueData.length > 0) {
         setMsgData([...msgData, ...uniqueData]);
       }
@@ -37,7 +36,6 @@ const Home = () => {
       setScrollLocation(scrollValue.scrollTop);
     }
   };
-
 
   /**
    * @name loadMoreData
@@ -73,7 +71,6 @@ const Home = () => {
     };
   }
 
-
   const debouncedHandleScroll = debounce(handleScroll, 100);
 
   useEffect(() => {
@@ -95,7 +92,6 @@ const Home = () => {
     }
   }, [isLoading]);
 
-
   const props = {
     data: msgData,
     handleScroll: debouncedHandleScroll,
@@ -107,12 +103,11 @@ const Home = () => {
       pageNo,
       setPageNo,
       refresh,
-      setRefresh,
+      setRefresh
     }
   };
 
-  return <BoxContentTitleTextView {...props} />
-
+  return <BoxContentTitleTextView {...props} />;
 };
 
 export default Home;

@@ -6,7 +6,7 @@ import SignupPage from "@pages/user/signup";
 import { globalStyle } from "@styles/global.style";
 import React from "react";
 import { Route, Routes } from "react-router";
-import {checkTokenExpiration} from "@utils/helpers";
+import { checkTokenExpiration } from "@utils/helpers";
 
 function App() {
   checkTokenExpiration();
@@ -16,7 +16,7 @@ function App() {
       <Global styles={globalStyle} />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/*" element={<Error404 />} />
+        <Route path="*" element={<Error404 />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
       </Routes>
