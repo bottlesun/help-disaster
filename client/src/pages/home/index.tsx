@@ -6,7 +6,7 @@ const HomePage = () => {
   return (
     <>
       {/*{!login && <Navigate to="/login" replace={true} />}*/}
-      <LayoutView children={<Home/>} />
+      <LayoutView children={<Home />} />
     </>
   );
 };

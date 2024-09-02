@@ -1,6 +1,6 @@
 import gravatar from "gravatar";
 import React from "react";
-import {LoginButtonStyle} from "../../common/button/button.style";
+import { LoginButtonStyle } from "../../common/button/button.style";
 import ButtonLinkView from "../../common/button/button-link.view";
 
 type ButtonLoginProps = {

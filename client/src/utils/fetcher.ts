@@ -1,3 +1,5 @@
+/* eslint-disable*/
+
 import { axiosDisasterInstance, axiosInstance } from "../api/axios.instance";
 
 export const fetcher = async (url: string) => {
@@ -5,7 +7,8 @@ export const fetcher = async (url: string) => {
     const res = await axiosInstance.get(url);
     return res.data;
   } catch (error: any) {
-    throw error.response.data;
+    const { response } = error;
+    throw response.data;
   }
 };
 

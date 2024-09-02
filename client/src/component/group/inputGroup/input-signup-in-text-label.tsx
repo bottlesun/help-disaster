@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import InputInTextLabelView from "./input-in-text-label.view";
-import {InputGroupStyle} from "../../common/input/input.style";
+import { InputGroupStyle } from "../../common/input/input.style";
 
 const InputSigninInTextLabel = () => {
   const [value, setValue] = useState({ id: "", password: "", name: "", repassword: "" });
 
   const handleLoginChange = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
-    setValue({ ...value, [event.target.name]: event.target.value });
-    event.target.value.toString().length !== 0 ? event.target.classList.add("input-focus") : event.target.classList.remove("input-focus");
-    // onInputChange(event);
+    const target = event.target;
+    setValue({ ...value, [target.name]: target.value });
+
+    if (target.value.toString().length !== 0) {
+      target.classList.add("input-focus");
+    } else {
+      target.classList.remove("input-focus");
+    }
   };
 
   const inputProps = {

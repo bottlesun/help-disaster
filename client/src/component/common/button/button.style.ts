@@ -42,6 +42,7 @@ export const CommonButtonStyle = styled.button`
 export const LinkButtonStyle = styled.div`
   min-width: 80px;
   min-height: 30px;
+
   a {
     padding: 8px 12px;
     display: block;
@@ -51,6 +52,7 @@ export const LinkButtonStyle = styled.div`
     text-align: center;
     color: var(--color-main);
     transition: all 0.2s;
+
     :hover {
       color: var(--color-main-dark);
     }
@@ -76,12 +78,14 @@ export const TopButtonStyle = styled.div`
   transition: all 0.2s;
   width: 100%;
   height: 100%;
+
   * {
     color: var(--color-main-dark);
   }
 
   &:hover {
     color: var(--color-main);
+
     * {
       color: var(--color-main);
     }

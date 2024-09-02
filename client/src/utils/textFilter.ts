@@ -22,10 +22,10 @@ export function handelRemoveSubstring(msg: string | undefined, subString: string
  * */
 export function handleRemoveAfterBracket(text: string, removeText: string) {
   if (text === undefined) return "";
-  let endIndex = text.indexOf(removeText);
+  const endIndex = text.indexOf(removeText);
 
   if (endIndex !== -1) {
-    let result = text.substring(0, endIndex + 1);
+    const result = text.substring(0, endIndex + 1);
     return result;
   }
 
@@ -44,10 +44,10 @@ export function handleRemoveAfterBracket(text: string, removeText: string) {
 export function handleRemoveBeforeBracket(text: string, removeText: string, subString: string) {
   if (!text) return "";
 
-  let startIndex = text.indexOf(removeText);
+  const startIndex = text.indexOf(removeText);
 
   if (startIndex !== -1) {
-    let result = text.substring(startIndex + 1);
+    const result = text.substring(startIndex + 1);
     const index = result.indexOf(subString);
     if (index !== -1) {
       return result.substring(0, index);

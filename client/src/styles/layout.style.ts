@@ -5,6 +5,7 @@ export const LayoutStyle = styled.div`
   min-width: 320px;
   margin: 0 auto;
   padding: 0 15px;
+
   .inner {
     position: relative;
     min-height: calc(100vh - 160px);
@@ -12,6 +13,7 @@ export const LayoutStyle = styled.div`
     // border: 1px solid red;
     color: var(--color-text-blue);
   }
+
   .login-inner {
     position: relative;
     min-height: calc(100vh - 80px);
@@ -22,9 +24,9 @@ export const LayoutStyle = styled.div`
     align-items: center;
   }
 
-  @media (max-width:760px){
-    .inner{
-      padding:10px 5px;
+  @media (max-width: 760px) {
+    .inner {
+      padding: 10px 5px;
     }
   }
 `;

@@ -1,5 +1,5 @@
-import {AxiosConfig, axiosErrorExceptionAsync} from "./axios.config";
-import {AxiosResponse} from "axios";
+import { AxiosConfig, axiosErrorExceptionAsync } from "./axios.config";
+import { AxiosResponse } from "axios";
 
 export class AuthApi extends AxiosConfig {
   private _url = `/auth`;
@@ -25,16 +25,14 @@ export class AuthApi extends AxiosConfig {
     } catch (error: unknown) {
       return axiosErrorExceptionAsync(error);
     }
-  }
-
+  };
 }
-
 
 type loginRequest = {
   username: string;
   password: string;
-}
+};
 
 type loginResponse = {
   accessToken: string;
-}
+};

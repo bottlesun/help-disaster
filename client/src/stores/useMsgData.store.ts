@@ -1,5 +1,5 @@
 import { RowData } from "@type/api.type";
-import {create} from "zustand";
+import { create } from "zustand";
 
 type UseMsgDataStore = {
   msgData: RowData[];

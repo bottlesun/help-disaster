@@ -1,7 +1,7 @@
 import { Dayjs } from "dayjs";
 import React from "react";
 import { IoIosRefresh } from "react-icons/io";
-import {ItemRefreshDateStyle} from "../../../common/box/box.style";
+import { ItemRefreshDateStyle } from "../../../common/box/box.style";
 
 export type BoxTitleDateViewProps = {
   onClick: any;

@@ -1,5 +1,4 @@
-import axios, {AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse} from "axios";
-
+import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 
 export const axiosErrorExceptionAsync = (error: unknown): Promise<AxiosResponse<unknown, any>> => {
   const { response, request, message, config } = error as AxiosError;
@@ -32,8 +31,8 @@ export abstract class AxiosConfig {
   protected token?: string;
   protected readonly baseURL: string;
 
-  protected constructor( token?: string) {
-    this.baseURL =  process.env.REACT_APP_API_URL || "";
+  protected constructor(token?: string) {
+    this.baseURL = process.env.REACT_APP_API_URL || "";
 
     this.instance = axios.create({
       baseURL: this.baseURL
@@ -41,13 +40,15 @@ export abstract class AxiosConfig {
     this.token = token;
     this.interceptor();
   }
+
   private interceptor = (): void => {
     this.instance.interceptors.request.use(this.request);
   };
 
   private request = (config: AxiosRequestConfig): any => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     this.token && (config.headers!["Authorization"] = `Bearer ${this.token}`);
 
     return config;
-  }
+  };
 }

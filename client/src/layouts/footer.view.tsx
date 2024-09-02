@@ -6,7 +6,9 @@ const FooterView = ({ brand, name }: FooterProps) => {
   return (
     <FooterStyle>
       <p>&copy;{brand} All rights reserved.</p>
-      <p>Create_by. {name ? name : brand} | var. {process.env.REACT_APP_VERSION}</p>
+      <p>
+        Create_by. {name ? name : brand} | var. {process.env.REACT_APP_VERSION}
+      </p>
     </FooterStyle>
   );
 };
