@@ -24,8 +24,10 @@ export const disasterFetcher = async (url: string) => {
 export const disasterScrollFetcher = async (url: string) => {
   try {
     const res = await axiosDisasterInstance.get(url);
-    return res.data.DisasterMsg[1].row;
+    // console.log("res", res?.data);
+    return res?.data?.body;
   } catch (error: any) {
+    console.error("Fetch error:", error);
     throw error.response.data;
   }
 };

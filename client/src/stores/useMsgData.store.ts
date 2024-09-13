@@ -1,12 +1,12 @@
-import { RowData } from "@type/api.type";
+import { DisasterMessageData } from "@type/api.type";
 import { create } from "zustand";
 
 type UseMsgDataStore = {
-  msgData: RowData[];
-  setMsgData: (state: RowData[]) => void;
+  msgData: DisasterMessageData[];
+  setMsgData: (state: DisasterMessageData[]) => void;
 };
 
 export const useMsgDataStore = create<UseMsgDataStore>((set) => ({
   msgData: [],
-  setMsgData: (state: RowData[]) => set({ msgData: state })
+  setMsgData: (state: DisasterMessageData[]) => set({ msgData: state })
 }));

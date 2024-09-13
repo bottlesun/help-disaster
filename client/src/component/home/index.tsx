@@ -2,14 +2,14 @@ import React, { useEffect, useRef, useState } from "react";
 import Scrollbars from "react-custom-scrollbars-2";
 import BoxContentTitleTextView from "../group/boxGroup/box-content-title-text.view";
 import { useGetDisasterInfinite } from "../../api/useDisaster.api";
-import { RowData } from "@type/api.type";
+import { DisasterMessageData } from "@type/api.type";
 
 const Home = () => {
   const scrollRef = useRef<Scrollbars>(null);
   const [pageNo, setPageNo] = useState(1);
   const [refresh, setRefresh] = useState(false);
   const [scrollLocation, setScrollLocation] = useState(0);
-  const [msgData, setMsgData] = useState<RowData[]>([]);
+  const [msgData, setMsgData] = useState<DisasterMessageData[]>([]);
   const [firstRender, setFirstRender] = useState(true);
   const { data, isLoading } = useGetDisasterInfinite({ pageNo });
 
@@ -25,7 +25,7 @@ const Home = () => {
     if (!isLoading && thisScrollHeight >= scrollMaxHeight) {
       if (pageNo === 6) return alert("최대 50개의 데이터만 불러올 수 있습니다.");
       loadMoreData();
-      const uniqueData = data.filter((item) => !msgData.some((msgItem) => msgItem.md101_sn === item.md101_sn));
+      const uniqueData = data.filter((item) => !msgData.some((msgItem) => msgItem.SN === item.SN));
       if (uniqueData.length > 0) {
         setMsgData([...msgData, ...uniqueData]);
       }

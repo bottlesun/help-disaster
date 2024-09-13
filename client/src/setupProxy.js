@@ -14,14 +14,14 @@ module.exports = (app) => {
   app.use(
     "/api2",
     createProxyMiddleware({
-      target: `https://apis.data.go.kr`,
+      target: `https://www.safetydata.go.kr`,
       changeOrigin: true,
       pathRewrite: (path, req) => {
         // 쿼리 문자열을 분리합니다.
         const queryString = req.url.split("?")[1]; // "pageNo=1&numOfRows=8"
 
         // 새로운 경로를 구성합니다.
-        return `/1741000/DisasterMsg5/getDisasterMsg5List?type=json&serviceKey=${msgKey}&${queryString}`;
+        return `/V2/api/DSSP-IF-00247?serviceKey=${msgKey}&${queryString}`;
       }
     })
   );

@@ -14,8 +14,7 @@ const axiosDisasterInstance = axios.create({
     "Content-Type": "application/json"
   },
   params: {
-    numOfRows: 10,
-    type: "json"
+    numOfRows: 10
   }
 });
 
