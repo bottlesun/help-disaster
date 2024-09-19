@@ -7,7 +7,7 @@ export async function GET({
 }: {
   query: Omit<DisasterMessageParameter, "numOfRows">;
 }) {
-  const url = `${process.env.NEXT_PUBLIC_MAIN_API_URL}/V2/api/DSSP-IF-00247`;
+  const url = `${process.env.NEXT_PUBLIC_MAIN_API_URL}`;
 
   try {
     // Axios로 외부 API에 대한 프록시 요청
