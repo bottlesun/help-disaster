@@ -6,9 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare": "panda codegen"
   },
   "dependencies": {
+    "axios": "^1.7.7",
     "next": "14.2.11",
     "react": "^18",
     "react-dom": "^18"

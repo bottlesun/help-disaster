@@ -6,7 +6,7 @@ export type DisasterMessageResponse = {
   body: DisasterMessageData[];
 };
 
-interface DisasterMessageParameter {
+export interface DisasterMessageParameter {
   numOfRows: number; // 한 페이지 결과 수
   pageNo: number; // 페이지 번호
   crtDt?: string; // 조회시작일자

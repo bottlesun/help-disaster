@@ -1,7 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
 import "../styles/font.css";
-import "../styles/reset.css";
 import "../styles/global.css";
 
 export const metadata: Metadata = {

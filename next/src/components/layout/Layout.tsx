@@ -7,11 +7,11 @@ import { LayoutStyle } from "@/components/layout/@layout.style";
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <>
+    <div className={LayoutStyle}>
       <Header brand={"HelpDisaster"} src={logo} />
-      <main className={LayoutStyle}>{children}</main>
+      <main className={"inner"}>{children}</main>
       <Footer brand={"HelpDisaster"} name={"BOTTLESUN"} />
-    </>
+    </div>
   );
 };
 

@@ -6,7 +6,7 @@ const BoxLogo = ({ src, brand }: HeaderProps) => {
   return (
     <h1>
       <Link href="/">
-        {src ? <Image width={124} height={20} src={src} alt={brand} /> : brand}
+        {src ? <Image width={180} height={30} src={src} alt={brand} /> : brand}
       </Link>
     </h1>
   );
