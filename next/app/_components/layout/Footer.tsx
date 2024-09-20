@@ -1,4 +1,4 @@
-import { FooterProps } from "@/types/layout.type";
+import { FooterProps } from "@/_types/layout.type";
 
 const Footer = ({ brand, name }: FooterProps) => {
   return (

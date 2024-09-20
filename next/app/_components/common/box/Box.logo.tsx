@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { HeaderProps } from "@/types/layout.type";
+import { HeaderProps } from "@/_types/layout.type";
 import Image from "next/image";
 
 const BoxLogo = ({ src, brand }: HeaderProps) => {

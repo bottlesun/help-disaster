@@ -1,7 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
-import "../styles/font.css";
-import "../styles/global.css";
+import "@/_styles/font.css";
+import "@/_styles/global.css";
 
 export const metadata: Metadata = {
   title: " Help Disaster - 긴급 재난 메시지 도우미",

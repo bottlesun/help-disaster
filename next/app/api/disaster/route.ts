@@ -1,6 +1,6 @@
 // app/api/disaster/route.js
 import axios from "axios";
-import { DisasterMessageParameter } from "@/types/disaster-message.api.type";
+import { DisasterMessageParameter } from "@/_types/disaster-message.api.type";
 
 export async function GET({
   query,

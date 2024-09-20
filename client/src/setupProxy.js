@@ -1,4 +1,4 @@
-//src/setupProxy.js
+//app/setupProxy.js
 const msgKey = process.env.REACT_APP_API_KEY;
 const msgUrl = process.env.REACT_APP_API_URL;
 const { createProxyMiddleware } = require("http-proxy-middleware");
