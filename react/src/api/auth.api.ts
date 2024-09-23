@@ -1,5 +1,5 @@
 import { AxiosConfig, axiosErrorExceptionAsync } from "./axios.config";
-import { AxiosResponse } from "axios";
+import { AxiosResponse } from "_utils";
 
 export class AuthApi extends AxiosConfig {
   private _url = `/auth`;

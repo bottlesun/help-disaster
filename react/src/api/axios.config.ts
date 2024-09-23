@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from "_utils";
 
 export const axiosErrorExceptionAsync = (error: unknown): Promise<AxiosResponse<unknown, any>> => {
   const { response, request, message, config } = error as AxiosError;

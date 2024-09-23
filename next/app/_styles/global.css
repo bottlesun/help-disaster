@@ -1,114 +1,116 @@
-@layer reset, base, tokens, recipes, utilities;
+@layer reset , base, add-base, tokens, recipes, utilities;
 
+@layer add-base {
+    :root {
+        --font-family-noto: 'Noto Sans KR', sans-serif;
+        --font-family-namum: "NanumSquare", sans-serif;
+        --color-main: #2d69e9;
+        --color-main-leight-dark: #275ccf;
+        --color-main-dark: #142f69;
+        --color-text-blue: #334469;
+        --color-text: #333;
+        --color-error: #b3261e;
+        --color-gray: #b2b2b2;
 
-:root {
-    --font-family-noto: 'Noto Sans KR', sans-serif;
-    --font-family-namum: "NanumSquare", sans-serif;
-    --color-main: #2d69e9;
-    --color-main-leight-dark: #275ccf;
-    --color-main-dark: #142f69;
-    --color-text-blue: #334469;
-    --color-text: #333;
-    --color-error: #b3261e;
-    --color-gray: #b2b2b2;
+        --font-size-lg: max(2.5rem, min(2vw, 4rem));
+        --font-size-md: max(2rem, min(1.5vw, 2rem));
+        --font-size-sm: max(1.5rem, min(1vw, 1.8rem));
+        --font-size-xsm: max(1rem, min(0.5vw, 1.3rem));
+    }
 
-    --font-size-lg: max(2.5rem, min(2vw, 4rem));
-    --font-size-md: max(2rem, min(1.5vw, 2rem));
-    --font-size-sm: max(1.5rem, min(1vw, 1.8rem));
-    --font-size-xsm: max(1rem, min(0.5vw, 1.3rem));
-}
+    html,
+    body {
+        padding: 0;
+        margin: 0;
+        font-family: var(--font-family-noto);
+        font-size: 10px;
+    }
 
-html,
-body {
-    padding: 0;
-    margin: 0;
-    font-family: var(--font-family-noto);
-    font-size: 10px;
-}
+    * {
+        color: var(--color-text);
+        box-sizing: border-box;
+        letter-spacing: -0.02em;
+        font-weight: 500;
+        font-size: 14px;
+    }
 
-* {
-    color: var(--color-text);
-    box-sizing: border-box;
-    letter-spacing: -0.02em;
-    font-weight: 500;
-    font-size: 14px;
-}
+    body {
+        background: #f9fbff;
+    }
 
-body {
-    background: #f9fbff;
-}
+    .inner {
+        position: relative;
+        min-height: calc(100vh - 160px);
+        padding: 30px 50px;
+        color: var(--color-text-blue);
+    }
 
-.inner {
-    position: relative;
-    min-height: calc(100vh - 160px);
-    padding: 30px 50px;
-    color: var(--color-text-blue);
-}
+    .login-inner {
+        position: relative;
+        min-height: calc(100vh - 160px);
+        padding: 30px 50px;
+        color: var(--color-text-blue);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-.login-inner {
-    position: relative;
-    min-height: calc(100vh - 160px);
-    padding: 30px 50px;
-    color: var(--color-text-blue);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+    header {
+        height: 80px;
+        margin: 0 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
 
-header {
-    height: 80px;
-    margin: 0 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+        a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-main);
+            font-size: 25px;
+            font-weight: 700;
+        }
+    }
 
-    a {
+    footer {
+        height: 80px;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: var(--color-main);
-        font-size: 25px;
-        font-weight: 700;
-    }
-}
+        flex-direction: column;
+        gap: 5px;
 
-footer {
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 5px;
+        p {
+            margin: 0;
+            text-align: center;
+            font-weight: 700;
+            font-size: 11px
+        }
+    }
 
-    p {
-        margin: 0;
-        text-align: center;
-        font-weight: 700;
-        font-size: 11px
+    @keyframes opacity {
+        0% {
+            opacity: 0;
+        }
+        25% {
+            opacity: 0.25;
+        }
+        50% {
+            opacity: 0.5;
+        }
+        75% {
+            opacity: 0.75;
+        }
+        100% {
+            opacity: 1;
+        }
     }
-}
 
-@keyframes opacity {
-    0% {
-        opacity: 0;
-    }
-    25% {
-        opacity: 0.25;
-    }
-    50% {
-        opacity: 0.5;
-    }
-    75% {
-        opacity: 0.75;
-    }
-    100% {
-        opacity: 1;
-    }
-}
+    @media (max-width: 760px) {
+        .inner {
+            padding: 10px 5px
+        }
 
-@media (max-width: 760px) {
-    .inner {
-        padding: 10px 5px
     }
 
 }

@@ -1,7 +1,8 @@
-import React from "react";
-import type { Metadata } from "next";
 import "@/_styles/font.css";
 import "@/_styles/global.css";
+
+import React from "react";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: " Help Disaster - 긴급 재난 메시지 도우미",

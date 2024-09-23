@@ -1,4 +1,4 @@
-import BoxLogo from "@/_components/common/box/Box.logo";
+import BoxLogo from "@/_components/common/box/BoxLogo";
 import { HeaderProps } from "@/_types/layout.type";
 
 const Header = ({ src, brand }: HeaderProps) => {
