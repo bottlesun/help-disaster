@@ -123,6 +123,31 @@ export const ItemRefreshDate = css({
 export const ItemTopButtonWrapper = css({
   width: "100%",
   height: "50px",
+  position: "absolute",
+  bottom: "0",
+});
+export const ItemTopButtonActive = css({
+  background:
+    "linear-gradient(0deg, rgba(249,251,255,1) 80%,  rgba(255,255,255,0) 100%)",
+});
+
+export const ItemTopButton = css({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  width: "100%",
+  height: "100%",
+  cursor: "pointer",
+  color: "var(--color-gray)",
+
+  "& path": {
+    fontSize: "20px",
+    color: "var(--color-main-dark)",
+  },
+  "& p": {
+    fontSize: "12px",
+    color: "var(--color-main-dark)",
+  },
 });
 
 export const ItemEmpty = css({
@@ -143,5 +168,19 @@ export const ItemEmpty = css({
     color: "var(--color-gray)",
     fontWeight: "400",
     animation: "opacity 1.4s infinite alternate",
+  },
+});
+
+export const itemScrollClass = css({
+  "&:after": {
+    content: "''",
+    display: "block",
+    height: "20px",
+    position: "absolute",
+    top: "-2px",
+    left: "0",
+    width: "100%",
+    background:
+      "linear-gradient(180deg, rgba(249,251,255,1) 0%, rgba(255,255,255,0) 100%)",
   },
 });

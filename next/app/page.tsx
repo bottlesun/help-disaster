@@ -8,9 +8,13 @@ export default async function Home() {
   const res = await fetch(`${process.env.BASE_URL}/api/disaster`);
   const resData: commonResponseType<DisasterMessageData[]> = await res.json();
 
+  const props = {
+    initialData: resData.data,
+  };
+
   return (
     <Layout>
-      <HomeDisaster data={resData.data} />
+      <HomeDisaster {...props} />
     </Layout>
   );
 }
