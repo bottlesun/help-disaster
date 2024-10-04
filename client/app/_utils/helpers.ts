@@ -21,7 +21,8 @@ export const slugify = function (str: string) {
 export function makeId(length: number) {
   // makeId 는 랜덤한 문자열을 생성해주는 함수입니다.
   let result = "";
-  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   const charactersLength = characters.length;
   for (let i = 0; i < length; i++) {
     result += characters.charAt(Math.floor(Math.random() * charactersLength));
@@ -36,7 +37,7 @@ export function makeId(length: number) {
  * @param {any[]} array2
  * @returns {boolean}
  * */
-export function arraysHaveSameContent(array1: any[], array2: any[]) {
+export function arraysHaveSameContent(array1: string[], array2: string[]) {
   const sortedArray1 = array1.slice().sort();
   const sortedArray2 = array2.slice().sort();
 

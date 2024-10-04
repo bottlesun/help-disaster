@@ -9,13 +9,15 @@ module.exports = {
     API_KEY: process.env.API_KEY, // 환경 변수 설정
     BASE_URL: process.env.BASE_URL || "http://localhost:3000",
   },
-  async redirects() {
-    return [
-      // {
-      //   source: `https://www.safetydata.go.kr/V2/api/DSSP-IF-00247?serviceKey=${this.env.API_KEY}&:query*`, // 리다이렉트할 경로
-      //   destination: "/api/disaster",
-      //   permanent: true, // 영구적인 리다이렉트
-      // },
-    ];
-  },
+  /*
+async redirects() {
+  return [
+    {
+      source: `/api/DSSP-IF-00247?serviceKey=${process.env.NEXT_PUBLIC_API_KEY}&:query*`, // 수정된 리다이렉트 경로
+      destination: "/api/disaster",
+      permanent: true, // 영구적인 리다이렉트
+    },
+  ];
+},
+*/
 };
