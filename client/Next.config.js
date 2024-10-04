@@ -6,7 +6,7 @@ module.exports = {
     domains: [""], // 외부 도메인의 이미지를 허용
   },
   env: {
-    API_KEY: process.env.API_KEY, // 환경 변수 설정
+    API_KEY: process.env.NEXT_PUBLIC_API_KEY, // 환경 변수 설정
     BASE_URL: process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000",
   },
   /*
