@@ -14,10 +14,6 @@ import Scrollbars from "react-custom-scrollbars-2";
 import { cx } from "../../../styled-system/css";
 import useStatesHook from "@/_hooks/useStates.hook";
 
-interface HomeDisasterProps {
-  initialData: DisasterMessageData[];
-}
-
 export interface HomeDisasterState {
   data: DisasterMessageData[];
   isLoading: boolean;
