@@ -6,7 +6,9 @@ import HomeDisaster from "@/_components/disaster/HomeDisaster";
 
 export default async function Home() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/disaster`);
-  const resData: commonResponseType<DisasterMessageData[]> = await res.json();
+
+  const resData: commonResponseType<DisasterMessageData[]> =
+    res.status !== 200 ? [] : await res.json();
 
   const props = {
     initialData: resData.data,
