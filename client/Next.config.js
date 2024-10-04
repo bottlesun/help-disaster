@@ -7,7 +7,7 @@ module.exports = {
   },
   env: {
     API_KEY: process.env.API_KEY, // 환경 변수 설정
-    BASE_URL: process.env.BASE_URL || "http://localhost:3000",
+    BASE_URL: process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000",
   },
   /*
 async redirects() {

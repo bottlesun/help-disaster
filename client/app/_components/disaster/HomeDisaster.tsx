@@ -65,7 +65,7 @@ const HomeDisaster = ({ initialData }: HomeDisasterProps) => {
       setStates({ isLoading: true });
 
       const res = await fetch(
-        `${process.env.BASE_URL}/api/disaster?pageNo=${page}`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/disaster?pageNo=${page}`,
       );
       const resData = await res.json();
       if (!resData.data) return alert("금일 데이터가 더 이상 없습니다.");
