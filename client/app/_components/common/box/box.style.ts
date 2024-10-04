@@ -48,6 +48,11 @@ export const ItemTitle = css({
     color: "var(--color-gray)",
     fontWeight: "400",
     animation: "opacity 1s infinite alternate",
+
+    // 미디어 쿼리 추가
+    "@media (max-width: 768px)": {
+      display: "flex",
+    },
   },
 });
 
@@ -125,6 +130,9 @@ export const ItemTopButtonWrapper = css({
   height: "50px",
   position: "absolute",
   bottom: "0",
+  "@media (max-width: 768px)": {
+    height: "20px",
+  },
 });
 export const ItemTopButtonActive = css({
   background:
