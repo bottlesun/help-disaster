@@ -62,7 +62,10 @@ const HomeDisaster = () => {
 
       const res = await fetch(`/api/disaster?pageNo=${page}`);
       const resData = await res.json();
-      if (!resData.data) return alert("금일 데이터가 더 이상 없습니다.");
+      if (!resData.data) {
+        setStates({ isLoading: false });
+        return alert("금일 데이터가 더 이상 없습니다.");
+      }
 
       const combinedData = [...data, ...resData.data].filter(
         (item, index, self) =>
