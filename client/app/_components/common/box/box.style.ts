@@ -21,7 +21,7 @@ export const ItemBox = css({
   background: "#fff",
   boxShadow: "0 2px 10px 0 rgba(51, 68, 105, 0.3)",
   width: "100%",
-  maxWidth: "800px",
+  maxWidth: "820px",
   minWidth: "320px",
   flexShrink: "0",
   display: "flex",

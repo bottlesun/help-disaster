@@ -7,6 +7,14 @@ export const LayoutStyle = css({
   padding: "0 15px",
 });
 
+export const AuthWrap = css({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  flexDirection: "column",
+  minHeight: "calc(100vh - 160px)",
+});
+
 export const NotFoundWrap = css({
   display: "flex",
   justifyContent: "center",
@@ -41,5 +49,19 @@ export const NotFoundWrap = css({
   "& img": {
     width: "300px",
     height: "100px",
+  },
+});
+
+export const HeaderLinkList = css({
+  display: "flex",
+  justifyContent: "flex-end",
+  alignItems: "center",
+  "& a": {
+    color: "var(--color-main)",
+    fontSize: "1.2rem",
+    marginLeft: "1rem",
+    "&:hover": {
+      color: "var(--color-main-dark)",
+    },
   },
 });

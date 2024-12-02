@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import NotfoundLayout from "@/_components/layout/NotfoundLayout";
+import LayoutNotfound from "@/_components/layout/LayoutNotfound";
 import { NotFoundWrap } from "@/_components/layout/layout.style";
 
 export const generateMetadata = () => {
@@ -12,7 +12,7 @@ export const generateMetadata = () => {
 
 export default function NotFound() {
   return (
-    <NotfoundLayout>
+    <LayoutNotfound>
       <div className={NotFoundWrap}>
         <div className={"notfound-container"}>
           <h1>404 NOT FOUND</h1>
@@ -21,6 +21,6 @@ export default function NotFound() {
 
         <Link href={"/"}>홈으로</Link>
       </div>
-    </NotfoundLayout>
+    </LayoutNotfound>
   );
 }
