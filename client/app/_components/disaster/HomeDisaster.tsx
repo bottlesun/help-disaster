@@ -103,6 +103,7 @@ const HomeDisaster = () => {
         console.error("Error initializing FCM:", error);
       }
     };
+
     void initFCM();
   }, []);
 
