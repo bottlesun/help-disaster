@@ -159,7 +159,7 @@ export const ItemEmpty = css({
   borderRadius: "5px",
   boxShadow: "0 2px 10px 0 rgba(51, 68, 105, 0.3)",
   width: "100%",
-  maxWidth: "800px",
+  maxWidth: "830px",
   minWidth: "320px",
 
   "& span.loading": {

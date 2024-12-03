@@ -13,6 +13,10 @@ import DisasterScrollItem from "@/_components/disaster/DisasterScroll-Item";
 import Scrollbars from "react-custom-scrollbars-2";
 import { cx } from "../../../styled-system/css";
 import useStatesHook from "@/_hooks/useStates.hook";
+import {
+  getFirebaseToken,
+  requestNotificationPermission,
+} from "../../../firebase";
 
 export interface HomeDisasterState {
   data: DisasterMessageData[];
@@ -55,6 +59,8 @@ const HomeDisaster = () => {
   };
 
   useEffect(() => {
+    const controller = new AbortController(); // AbortController 생성
+
     const fetchData = async () => {
       if (page >= 6) return alert("최대 50개까지만 불러올 수 있습니다.");
 
@@ -79,7 +85,26 @@ const HomeDisaster = () => {
     };
 
     void fetchData();
+    return () => {
+      controller.abort(); // 요청 중단
+    };
   }, [page]);
+
+  // FCM 토큰 초기화
+  useEffect(() => {
+    const initFCM = async () => {
+      try {
+        await requestNotificationPermission(); // 알림 권한 요청
+        const token = await getFirebaseToken();
+        if (token) {
+          console.log(token);
+        }
+      } catch (error) {
+        console.error("Error initializing FCM:", error);
+      }
+    };
+    void initFCM();
+  }, []);
 
   return (
     <section className={ItemContainer}>

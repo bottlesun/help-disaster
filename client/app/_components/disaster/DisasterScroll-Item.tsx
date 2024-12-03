@@ -19,7 +19,7 @@ interface DisasterScrollProps {
 const DisasterScrollItem = ({ data, isLoading }: DisasterScrollProps) => {
   return (
     <div className={ItemContent}>
-      {data?.length == 0 && !isLoading && <BoxEmpty />}
+      {data?.length === 0 && !isLoading && <BoxEmpty />}
       {data?.length !== 0 &&
         data?.map((item) => {
           return (

@@ -8,7 +8,7 @@ const Header = ({ src, brand }: HeaderProps) => {
     <header>
       <BoxLogo brand={brand} src={src} />
       <nav className={HeaderLinkList}>
-        <Link href={"#"}>로그인/회원가입</Link>
+        <Link href={"/login"}>로그인/회원가입</Link>
       </nav>
     </header>
   );
