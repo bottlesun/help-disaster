@@ -13,10 +13,6 @@ import DisasterScrollItem from "@/_components/disaster/DisasterScroll-Item";
 import Scrollbars from "react-custom-scrollbars-2";
 import { cx } from "../../../styled-system/css";
 import useStatesHook from "@/_hooks/useStates.hook";
-import {
-  getFirebaseToken,
-  requestNotificationPermission,
-} from "../../../firebase";
 
 export interface HomeDisasterState {
   data: DisasterMessageData[];
@@ -66,22 +62,40 @@ const HomeDisaster = () => {
 
       setStates({ isLoading: true });
 
-      const res = await fetch(`/api/disaster?pageNo=${page}`);
-      const resData = await res.json();
-      if (!resData.data) {
-        setStates({ isLoading: false });
-        return alert("금일 데이터가 더 이상 없습니다.");
+      try {
+        const res = await fetch(`/api/disaster?pageNo=${page}`, {
+          signal: controller.signal,
+        });
+        if (!res.ok) throw new Error("데이터를 불러오는 데 실패했습니다.");
+
+        const resData = await res.json();
+        if (!resData.data) {
+          setStates({ isLoading: false });
+          return alert("금일 데이터가 더 이상 없습니다.");
+        }
+
+        const combinedData = [...data, ...resData.data].filter(
+          (item, index, self) =>
+            index === self.findIndex((t) => t.SN === item.SN),
+        );
+
+        setStates({
+          data: page === 1 ? resData.data : combinedData,
+          isLoading: false,
+        });
+      } catch (error: unknown) {
+        if (error instanceof DOMException && error.name === "AbortError") {
+          console.log("요청이 중단되었습니다.");
+          // alert("요청이 중단되었습니다.");
+        } else {
+          if (error instanceof Error) {
+            alert(error.message);
+          } else {
+            alert("데이터를 불러오는 데 실패했습니다.");
+          }
+          setStates({ isLoading: false });
+        }
       }
-
-      const combinedData = [...data, ...resData.data].filter(
-        (item, index, self) =>
-          index === self.findIndex((t) => t.SN === item.SN),
-      );
-
-      setStates({
-        data: page === 1 ? resData.data : combinedData,
-        isLoading: false,
-      });
     };
 
     void fetchData();
@@ -91,21 +105,27 @@ const HomeDisaster = () => {
   }, [page]);
 
   // FCM 토큰 초기화
-  useEffect(() => {
-    const initFCM = async () => {
-      try {
-        await requestNotificationPermission(); // 알림 권한 요청
-        const token = await getFirebaseToken();
-        if (token) {
-          console.log(token);
-        }
-      } catch (error) {
-        console.error("Error initializing FCM:", error);
-      }
-    };
-
-    void initFCM();
-  }, []);
+  // useEffect(() => {
+  //   const initFCM = async () => {
+  //     try {
+  //       await requestNotificationPermission(); // 알림 권한 요청
+  //       const token = await getFirebaseToken();
+  //       if (token) {
+  //         // console.log(token);
+  //       }
+  //     } catch (error) {
+  //       console.error("Error initializing FCM:", error);
+  //     }
+  //   };
+  //
+  //   if (typeof window !== "undefined" && "serviceWorker" in navigator) {
+  //     void initFCM();
+  //   } else {
+  //     console.warn(
+  //       "Firebase Messaging은 지원되지 않는 환경에서 실행되었습니다.",
+  //     );
+  //   }
+  // }, []);
 
   return (
     <section className={ItemContainer}>
